@@ -1,0 +1,27 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#define LBL_TEXTSIZE(text, font) [text length] > 0 ? [text                                                  \
+sizeWithAttributes:@{NSFontAttributeName: font}] : \
+CGSizeZero;
+#else
+#define LBL_TEXTSIZE(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero;
+#endif
+
+#define GPColor(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define AppWindow [UIApplication sharedApplication].keyWindow
+#define WINDOW [[[UIApplication sharedApplication] delegate] window]
+#define NavHeight 64

@@ -1,0 +1,6 @@
+framework module Pods_GPHybrid_Example {
+  umbrella header "Pods-GPHybrid_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

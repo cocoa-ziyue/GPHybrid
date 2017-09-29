@@ -1,0 +1,29 @@
+PODS:
+  - GPHybrid (0.1.0)
+  - GPNavigationController (0.1.2):
+    - Reachability
+  - Reachability (3.2)
+
+DEPENDENCIES:
+  - GPHybrid (from `../`)
+  - GPNavigationController (from `https://github.com/ziyue92/GPNavigationController.git`)
+
+EXTERNAL SOURCES:
+  GPHybrid:
+    :path: ../
+  GPNavigationController:
+    :git: https://github.com/ziyue92/GPNavigationController.git
+
+CHECKOUT OPTIONS:
+  GPNavigationController:
+    :commit: 89510209852dfa08e8fdf3e1199b67090f0b72ea
+    :git: https://github.com/ziyue92/GPNavigationController.git
+
+SPEC CHECKSUMS:
+  GPHybrid: 47951cf4de5bf1138b273814bbaad1401954af51
+  GPNavigationController: 9cc48b82269f1cc591519914b0a40d20a1db7e2e
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+
+PODFILE CHECKSUM: b72e3feb0619f0382d3869e42ab76ebe051e1b14
+
+COCOAPODS: 1.3.1

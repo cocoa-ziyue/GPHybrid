@@ -1,0 +1,6 @@
+framework module GPHybrid {
+  umbrella header "GPHybrid-umbrella.h"
+
+  export *
+  module * { export * }
+}

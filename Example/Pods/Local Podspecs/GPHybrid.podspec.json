@@ -1,0 +1,22 @@
+{
+  "name": "GPHybrid",
+  "version": "0.1.0",
+  "summary": "A short description of GPHybrid.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ziyue92/GPHybrid",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ziyue92": "ziyue92@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/ziyue92/GPHybrid.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "GPHybrid/Classes/**/*"
+}
