@@ -6,7 +6,7 @@
 //  Copyright © 2017年 weipei. All rights reserved.
 //
 
-#import "VPBaseViewController.h"
+#import "GPBaseViewController.h"
 #import "WebViewJavascriptBridge.h"
 #import "WKWebViewJavascriptBridge.h"
 #import <WebKit/WebKit.h>
@@ -22,7 +22,7 @@ typedef enum VPWebOverlayStatus {
 } VPWebOverlayStatus;
 
 
-@interface VPWebViewController : VPBaseViewController
+@interface VPWebViewController : GPBaseViewController
 
 @property (nonatomic, strong) VPBaseWebView *uiWebView;   //uiwebview视图
 @property (nonatomic, strong) VPBaseWKWebView *wkWebView; //wkwebview视图

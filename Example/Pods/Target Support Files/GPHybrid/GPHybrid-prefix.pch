@@ -10,3 +10,18 @@
 #endif
 #endif
 
+//屏幕适配
+#define FitAllScreen(value1, value2) (SCREEN_WIDTH >= 414 ? (Fit6P(value1)) : (Fit6(value2)))
+#define Fit6P(value) ((value) / 1242.0f * [UIScreen mainScreen].bounds.size.width)
+#define Fit6(value) ((value) / 750.0f * [UIScreen mainScreen].bounds.size.width)
+#define FitAllFont(value1, value2) (SCREEN_WIDTH >= 414 ? (value1) : (value2))
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define NavHeight 60
+
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+#define iOS8LESS ([[UIDevice currentDevice].systemVersion doubleValue] < 8.0)
+#define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+#define iOS9LESS ([[UIDevice currentDevice].systemVersion doubleValue] <= 9.0)
+#define iOS10MORE ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
+#define HWColor(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]

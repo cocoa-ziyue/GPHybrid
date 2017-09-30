@@ -4,12 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GPHybrid.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>GPNavigationController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,8 +34,49 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>libextobjc.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>04A6D67EFF0284319D27D7AD47E48DD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21F19827CBCF6B4868B268F5B3A3953C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2A0C6CE86657EE6DDB3B2CD9BD5C0917</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B1895838C0D9CD003D003879410DDEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>61E08B38B4A4FAC1F57FFEA90BE6CA8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B37A4CE9B717372F9867FD2E195BE00A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

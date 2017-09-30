@@ -7,19 +7,15 @@
 //
 
 #import "VPBaseWebView.h"
-#import "VPUtility.h"
 #import "NJKWebViewProgress.h"
-#import "VPPageLoadView.h"
-#import "NoDataView.h"
 #import "Masonry.h"
-#import "VPCategory.h"
 
 @interface VPBaseWebView () <UIWebViewDelegate, NJKWebViewProgressDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
-@property (nonatomic, strong) NoDataView *errorView;
-@property (nonatomic, strong) VPPageLoadView *pageLoadView;
+//@property (nonatomic, strong) NoDataView *errorView;
+//@property (nonatomic, strong) VPPageLoadView *pageLoadView;
 
 @end
 
@@ -51,44 +47,33 @@
 #pragma mark -
 #pragma mark Accessor methods
 
-- (void)refreshAction:(UITapGestureRecognizer *)recognizer {
-    self.errorView.hidden = YES;
-    self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
-    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-    dispatch_after(timer, dispatch_get_main_queue(), ^{
-        [self setRequest:_request];
-    });
-}
+//- (void)refreshAction:(UITapGestureRecognizer *)recognizer {
+//    self.errorView.hidden = YES;
+//    self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+//    dispatch_after(timer, dispatch_get_main_queue(), ^{
+//        [self setRequest:_request];
+//    });
+//}
 
 - (void)setRequest:(NSMutableURLRequest *)request {
     _request = request;
-    if (![request.URL.absoluteString containsString:@"lang="]) {
-        NSString *langSet = [NSString stringWithFormat:@"lang=%@",[Defaults valueForKey:LANGUAGE]];
-        NSString *tempUrl = request.URL.absoluteString;
-        if (![tempUrl containsString:@"?"]) {
-            tempUrl = [NSString stringWithFormat:@"%@?%@",request.URL.absoluteString,langSet];
-        } else {
-            tempUrl = [NSString stringWithFormat:@"%@&%@",request.URL.absoluteString,langSet];
-        }
-        NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:tempUrl]];
-        _request = newRequest;
-    }
     NSString *app_versions = [NSString stringWithFormat:@"ios%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    [_request setValue:[Defaults valueForKey:LANGUAGE] forHTTPHeaderField:LANG];
+//    [_request setValue:[Defaults valueForKey:LANGUAGE] forHTTPHeaderField:LANG];
     [_request setValue:app_versions forHTTPHeaderField:@"app-versions"];
-    [_request setValue:[Defaults valueForKey:@"token"] forHTTPHeaderField:@"token"];
-    [_request setValue:[Defaults valueForKey:@"Deviceno"] forHTTPHeaderField:@"device-no"];
-    [_request setValue:[Defaults valueForKey:@"uid"] forHTTPHeaderField:@"user-id"];
+//    [_request setValue:[Defaults valueForKey:@"token"] forHTTPHeaderField:@"token"];
+//    [_request setValue:[Defaults valueForKey:@"Deviceno"] forHTTPHeaderField:@"device-no"];
+//    [_request setValue:[Defaults valueForKey:@"uid"] forHTTPHeaderField:@"user-id"];
     [self.uiWebView loadRequest:_request];
-    VPLog(@"UIWebView: web url is %@", _request.URL.absoluteString);
+    NSLog(@"UIWebView: web url is %@", _request.URL.absoluteString);
 }
 
-- (VPPageLoadView *)pageLoadView {
-    if (!_pageLoadView) {
-        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
-    }
-    return _pageLoadView;
-}
+//- (VPPageLoadView *)pageLoadView {
+//    if (!_pageLoadView) {
+//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+//    }
+//    return _pageLoadView;
+//}
 
 - (UIWebView *)uiWebView {
     if (!_uiWebView) {
@@ -111,17 +96,17 @@
     return _activityIndicator;
 }
 
-- (NoDataView *)errorView {
-    if (!_errorView) {
-        _errorView = [[NoDataView alloc] initWithFrame:self.uiWebView.frame];
-        _errorView.logoImage.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshAction:) ];
-        [_errorView.logoImage addGestureRecognizer:tap];
-        _errorView.errorType = 1;
-        [_errorView noDataTitle:VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
-    }
-    return _errorView;
-}
+//- (NoDataView *)errorView {
+//    if (!_errorView) {
+//        _errorView = [[NoDataView alloc] initWithFrame:self.uiWebView.frame];
+//        _errorView.logoImage.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshAction:) ];
+//        [_errorView.logoImage addGestureRecognizer:tap];
+//        _errorView.errorType = 1;
+//        [_errorView noDataTitle:VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
+//    }
+//    return _errorView;
+//}
 
 - (WebViewJavascriptBridge *)bridge {
     if (!_bridge) {
@@ -146,7 +131,7 @@
         [self.delegate webView:self loadingStatus:@"0"]; //开始加载
     }
     if(self.showPageLoadView){
-        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
     }
 }
 
@@ -156,7 +141,7 @@
         [self.delegate webView:self loadingStatus:@"1"]; //加载完毕
     }
     if(self.showPageLoadView){
-        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
     }
     NSString *webTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if ([self.delegate respondsToSelector:@selector(webView:getWebViewTitle:)]) {
@@ -173,12 +158,12 @@
     if ([self.delegate respondsToSelector:@selector(webView:loadingStatus:)]) {
         [self.delegate webView:self loadingStatus:@"-1"]; //加载失败
     }
-    if(self.showPageLoadView){
-        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
-        [self addSubview:self.errorView];
-        self.errorView.logoImage.centerY = self.errorView.height - self.errorView.logoImage.height/2;
-        self.errorView.hidden = NO;
-    }
+//    if(self.showPageLoadView){
+//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        [self addSubview:self.errorView];
+//        self.errorView.logoImage.centerY = self.errorView.height - self.errorView.logoImage.height/2;
+//        self.errorView.hidden = NO;
+//    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

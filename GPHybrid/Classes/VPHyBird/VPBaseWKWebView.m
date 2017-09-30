@@ -8,20 +8,16 @@
 
 #import "VPBaseWKWebView.h"
 #import "NJKWebViewProgress.h"
-#import "VPUtility.h"
 #import "NSString+Hybridmd5.h"
 #import <AFNetworking/AFImageDownloader.h>
-#import "VPPageLoadView.h"
-#import "NoDataView.h"
-#import "VPCategory.h"
 
 @interface VPBaseWKWebView () <WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSString *h5orignContent;
 @property (nonatomic, strong) NSString *documentPath;
-@property (nonatomic, strong) NoDataView *errorView;
-@property (nonatomic, strong) VPPageLoadView *pageLoadView;
+//@property (nonatomic, strong) NoDataView *errorView;
+//@property (nonatomic, strong) VPPageLoadView *pageLoadView;
 @property (nonatomic, assign) BOOL loadSuccess;
 
 @end
@@ -43,23 +39,12 @@
     
 - (void)setRequest:(NSMutableURLRequest *)request {
     _request = request;
-    if (![request.URL.absoluteString containsString:@"lang="]) {
-        NSString *langSet = [NSString stringWithFormat:@"lang=%@",[Defaults valueForKey:LANGUAGE]];
-        NSString *tempUrl = request.URL.absoluteString;
-        if (![tempUrl containsString:@"?"]) {
-            tempUrl = [NSString stringWithFormat:@"%@?%@",request.URL.absoluteString,langSet];
-        } else {
-            tempUrl = [NSString stringWithFormat:@"%@&%@",request.URL.absoluteString,langSet];
-        }
-        NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:tempUrl]];
-        _request = newRequest;
-    }
     NSString *app_versions = [NSString stringWithFormat:@"ios%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    [_request setValue:[Defaults valueForKey:LANGUAGE] forHTTPHeaderField:LANG];
+//    [_request setValue:[Defaults valueForKey:LANGUAGE] forHTTPHeaderField:LANG];
     [_request setValue:app_versions forHTTPHeaderField:@"app-versions"];
-    [_request setValue:[Defaults valueForKey:@"token"] forHTTPHeaderField:@"token"];
-    [_request setValue:[Defaults valueForKey:@"Deviceno"] forHTTPHeaderField:@"device-no"];
-    [_request setValue:[Defaults valueForKey:@"uid"] forHTTPHeaderField:@"user-id"];
+//    [_request setValue:[Defaults valueForKey:@"token"] forHTTPHeaderField:@"token"];
+//    [_request setValue:[Defaults valueForKey:@"Deviceno"] forHTTPHeaderField:@"device-no"];
+//    [_request setValue:[Defaults valueForKey:@"uid"] forHTTPHeaderField:@"user-id"];
     if (self.isForceRefresh) { //发生了网页刷新，则请求网页
         [self.wkWebView loadRequest:_request];
         return;
@@ -76,7 +61,7 @@
     } else {        //反之，则请求网页
         [self.wkWebView loadRequest:_request];
     }
-    VPLog(@"WKWebView: web url is %@", _request.URL.absoluteString);
+    NSLog(@"WKWebView: web url is %@", _request.URL.absoluteString);
 }
 
 
@@ -103,7 +88,7 @@
         [self.delegate wkWebView:self loadingStatus:@"1"];
     }
     if(self.showPageLoadView){
-        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
     }
 }
 
@@ -114,9 +99,9 @@
         [self.delegate wkWebView:self loadingStatus:@"-1"];
     }
     if(self.showPageLoadView){
-        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
-        [self addSubview:self.errorView];
-        self.errorView.hidden = NO;
+//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        [self addSubview:self.errorView];
+//        self.errorView.hidden = NO;
     }
 }
 
@@ -150,8 +135,8 @@
 
 // 在代理方法中处理对应事件
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    VPLog(@"%@", NSStringFromSelector(_cmd));
-    VPLog(@"%@", message.body);
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"%@", message.body);
 }
 
 #pragma mark -
@@ -167,19 +152,19 @@
     NSArray *arrayOfAllMatches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
     for (NSTextCheckingResult *match in arrayOfAllMatches){
         NSString * substringForMatch = [string substringWithRange:match.range];
-        VPLog(@"匹配到了新地址%@",substringForMatch);
+        NSLog(@"匹配到了新地址%@",substringForMatch);
         return YES;
     }
     return NO;
 }
 
 - (void)refreshAction:(UITapGestureRecognizer *)recognizer {
-    self.errorView.hidden = YES;
-    self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
-    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-    dispatch_after(timer, dispatch_get_main_queue(), ^{
-            [self setRequest:_request];
-    });
+//    self.errorView.hidden = YES;
+//    self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+//    dispatch_after(timer, dispatch_get_main_queue(), ^{
+//            [self setRequest:_request];
+//    });
 }
 
 - (void)cacheH5Code {
@@ -230,7 +215,7 @@
             NSString *imageSource = [NSString stringWithFormat:@"data:image/jpg;base64,%@", [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn]];
             NSString *localPath = [[self cachePach] stringByAppendingPathComponent:[NSString vp_hybrid_md5:imgUrl]];
             if (![data writeToFile:localPath atomically:NO]) {
-                VPLog(@"写入本地失败：%@", imgUrl);
+                NSLog(@"写入本地失败：%@", imgUrl);
                 return;
             } else {
                 count++;
@@ -240,7 +225,7 @@
                 }
             }
         } failure:^(NSURLRequest *_Nonnull request, NSHTTPURLResponse *_Nullable response, NSError *_Nonnull error) {
-            VPLog(@"download image url fail: %@", error);
+            NSLog(@"download image url fail: %@", error);
         }];
     }
 }
@@ -296,21 +281,22 @@
 
 #pragma mark -
 #pragma mark Accesstor methods
-//转圈判定
-- (void)setShowPageLoadView:(BOOL)showPageLoadView {
-    _showPageLoadView = showPageLoadView;
-    if (showPageLoadView) {
-        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
-    }
-}
-    
+////转圈判定
+//- (void)setShowPageLoadView:(BOOL)showPageLoadView {
+//    _showPageLoadView = showPageLoadView;
+//    if (showPageLoadView) {
+//        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//    }
+//}
+
 //转圈
-- (VPPageLoadView *)pageLoadView {
-    if (!_pageLoadView) {
-        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
-    }
-    return _pageLoadView;
-}
+//- (VPPageLoadView *)pageLoadView {
+//    if (!_pageLoadView) {
+//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+//    }
+//    return _pageLoadView;
+//}
+
 //获取h5源码
 - (NSString *)h5orignContent {
     if (!_h5orignContent) {
@@ -354,17 +340,17 @@
     return _activityIndicator;
 }
 
-- (NoDataView *)errorView {
-    if (!_errorView) {
-        _errorView = [[NoDataView alloc] initWithFrame:self.wkWebView.frame];
-        _errorView.logoImage.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshAction:) ];
-        [_errorView.logoImage addGestureRecognizer:tap];
-        _errorView.errorType = 1;
-        [_errorView noDataTitle:VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
-    }
-    return _errorView;
-}
+//- (NoDataView *)errorView {
+//    if (!_errorView) {
+//        _errorView = [[NoDataView alloc] initWithFrame:self.wkWebView.frame];
+//        _errorView.logoImage.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshAction:) ];
+//        [_errorView.logoImage addGestureRecognizer:tap];
+//        _errorView.errorType = 1;
+//        [_errorView noDataTitle:VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
+//    }
+//    return _errorView;
+//}
 
 - (WebViewJavascriptBridge *)bridge {
     if (!_bridge) {
