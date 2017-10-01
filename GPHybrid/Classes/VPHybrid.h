@@ -13,12 +13,7 @@
 #import "VPBaseWKWebView.h"
 #import "VPWebViewController.h"
 #import "VPHybridCache.h"
-
-#import "VPCategory.h"
-#import "VPCommonView.h"
-#import "VPBaseRefresh.h"
 #import "Masonry.h"
-
 
 
 #endif /* VPHybird_h */
