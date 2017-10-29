@@ -10,6 +10,7 @@
 #import "NJKWebViewProgressView.h"
 #import "GPNavtionBarDefines.h"
 #import "extobjc.h"
+#import "VPHybridPageLoadView.h"
 
 @interface VPWebViewController () <VPWebViewDelegate, VPWKWebViewDelegate>
 
@@ -18,7 +19,7 @@
 @property (nonatomic, strong) UIView *webSuperView;
 @property (nonatomic, strong) UILabel *hostDeslbl;                 //host名称
 @property (assign, nonatomic) BOOL showPageLoadView;              //是否开启转圈
-//@property (nonatomic, strong) VPPageLoadView *pageLoadView;     //转圈
+@property (nonatomic, strong) VPHybridPageLoadView *pageLoadView;     //转圈
 @property (nonatomic, strong, readwrite) NSString *currentUrl;   //当前请求地址
 
 @end
@@ -140,46 +141,46 @@
 
 - (void)setStatus:(VPWebOverlayStatus )status {
     _status = status;
-//    switch (status) {
-//        case VPWebOverlayStatusLoading:
-//        {
-//            if (self.showPageLoadView) {       //开启转圈
-//                self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
-//            }
-//        }
-//            break;
-//        case VPWebOverlayStatusSuccess:
-//        {
-//            if (self.showPageLoadView) {       //结束转圈
-//                self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
-//            }
-//            if (self.showHostURl) {
-//                [self setUrlDescpritionShow:self.showHostURl];
-//            } else {
-//#if defined(CONFIGURATION_Develop) || defined(DEBUG) //内测、debug阶段
-//                [self setUrlDescpritionShow:YES];
-//                self.hostDeslbl.hidden = NO;
-//#endif
-//            }
-//        }
-//            break;
-//        case VPWebOverlayStatusError:
-//        {
-//            if (self.showPageLoadView) {       //结束转圈
-//                self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
-//            }
-//        }
-//            break;
-//        case VPWebOverlayStatusReload:
-//        {
-//            if (self.showPageLoadView) {       //开启转圈
-//                self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
-//            }
-//        }
-//            break;
-//        default:
-//            break;
-//    }
+    switch (status) {
+        case VPWebOverlayStatusLoading:
+        {
+            if (self.showPageLoadView) {       //开启转圈
+                self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+            }
+        }
+            break;
+        case VPWebOverlayStatusSuccess:
+        {
+            if (self.showPageLoadView) {       //结束转圈
+                self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+            }
+            if (self.showHostURl) {
+                [self setUrlDescpritionShow:self.showHostURl];
+            } else {
+#if defined(CONFIGURATION_Develop) || defined(DEBUG) //内测、debug阶段
+                [self setUrlDescpritionShow:YES];
+                self.hostDeslbl.hidden = NO;
+#endif
+            }
+        }
+            break;
+        case VPWebOverlayStatusError:
+        {
+            if (self.showPageLoadView) {       //结束转圈
+                self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+            }
+        }
+            break;
+        case VPWebOverlayStatusReload:
+        {
+            if (self.showPageLoadView) {       //开启转圈
+                self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)setUrlDescpritionShow:(BOOL)flag {
@@ -216,7 +217,7 @@
 
 - (void)webView:(VPBaseWebView *)webView loadingStatus:(NSString *)status {
     if ([status isEqualToString:@"0"]) {
-        //        self.status = VPWebOverlayStatusLoading;
+
     } else if ([status isEqualToString:@"1"]) {
         self.status = VPWebOverlayStatusSuccess;
     } else if ([status isEqualToString:@"-1"]) {
@@ -259,7 +260,7 @@
 
 - (void)wkWebView:(VPBaseWKWebView *)webView loadingStatus:(NSString *)status {
     if ([status isEqualToString:@"0"]) {
-        self.status = VPWebOverlayStatusLoading;
+      
     } else if ([status isEqualToString:@"1"]) {
         self.status = VPWebOverlayStatusSuccess;
     } else if ([status isEqualToString:@"-1"]) {
@@ -303,40 +304,16 @@
     return [UIImage imageNamed:self.emIcon];
 }
 
-//- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-//    NSString *showText = @"";
-//    if (self.status == VPWebOverlayStatusError) {
-//        showText = VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized);
-//    } else {
-//        showText = @"";
-//    }
-//    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:self.emTitleFont ? self.emTitleFont : 13], NSForegroundColorAttributeName: self.emTitleBack ? [UIColor colorWithHex:self.emTitleBack] : HWColor(170, 170, 170)};
-//    return [[NSAttributedString alloc] initWithString:showText ? showText : @"" attributes:attributes];
-//}
-//
-//- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
-//    if (self.status == VPWebOverlayStatusError) {
-////        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
-//        dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-//        dispatch_after(timer, dispatch_get_main_queue(), ^{
-//            if (iOS8LESS || self.isforceUseoldWebView) {
-//                self.uiWebView.request = self.webUrlRequest.mutableCopy;
-//            } else {
-//                self.wkWebView.request = self.webUrlRequest.mutableCopy;
-//            }
-//            self.status = VPWebOverlayStatusReload;
-//        });
-//    }
-//}
 
 #pragma mark -
 #pragma mark Accesstor methods
-//- (VPPageLoadView *)pageLoadView {
-//    if (!_pageLoadView) {
-//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self.baseWebViewOwner withframeY:0 updateCiclerViewY:(self.baseWebViewOwner.height - SCREEN_HEIGHT)/2];
-//    }
-//    return _pageLoadView;
-//}
+
+- (VPHybridPageLoadView *)pageLoadView {
+    if (!_pageLoadView) {
+        _pageLoadView = [[VPHybridPageLoadView alloc]initInSuperView:self.baseWebViewOwner withframeY:0 updateCiclerViewY:(self.baseWebViewOwner.frame.size.height - SCREEN_HEIGHT)/2];
+    }
+    return _pageLoadView;
+}
 
 - (VPBaseWebView *)uiWebView {
     if (!_uiWebView) {
@@ -389,7 +366,7 @@
         CGRect barFrame = CGRectMake(0, NavHeight - progressBarHeight, SCREEN_WIDTH, progressBarHeight);
         _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
         _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//        _progressView.progressBarView.backgroundColor = NavBgColor;
+        _progressView.progressBarView.backgroundColor = NavBgColor;
         _progressView.progressBarView.tintColor = HWColor(50, 135, 255);
         if (self.showProgressView) {
             self.showPageLoadView = NO;
@@ -406,7 +383,7 @@
         CGFloat progressBarHeight = 2.f;
         CGRect barFrame = CGRectMake(0, NavHeight - progressBarHeight, SCREEN_WIDTH, progressBarHeight);
         _wkProgressView = [[UIProgressView alloc] initWithFrame:barFrame];
-//        _wkProgressView.backgroundColor = NavBgColor;
+        _wkProgressView.backgroundColor = NavBgColor;
         _wkProgressView.tintColor = HWColor(50, 135, 255);
         _wkProgressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         if (self.showProgressView) {

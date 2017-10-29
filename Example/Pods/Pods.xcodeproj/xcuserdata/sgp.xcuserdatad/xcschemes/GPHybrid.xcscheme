@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '04A6D67EFF0284319D27D7AD47E48DD1'
+               BlueprintIdentifier = 'A941793EB57F89C151AD360D52B6EA89'
                BlueprintName = 'GPHybrid'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'GPHybrid.framework'>

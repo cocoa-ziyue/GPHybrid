@@ -40,11 +40,7 @@
 - (void)setRequest:(NSMutableURLRequest *)request {
     _request = request;
     NSString *app_versions = [NSString stringWithFormat:@"ios%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-//    [_request setValue:[Defaults valueForKey:LANGUAGE] forHTTPHeaderField:LANG];
     [_request setValue:app_versions forHTTPHeaderField:@"app-versions"];
-//    [_request setValue:[Defaults valueForKey:@"token"] forHTTPHeaderField:@"token"];
-//    [_request setValue:[Defaults valueForKey:@"Deviceno"] forHTTPHeaderField:@"device-no"];
-//    [_request setValue:[Defaults valueForKey:@"uid"] forHTTPHeaderField:@"user-id"];
     if (self.isForceRefresh) { //发生了网页刷新，则请求网页
         [self.wkWebView loadRequest:_request];
         return;

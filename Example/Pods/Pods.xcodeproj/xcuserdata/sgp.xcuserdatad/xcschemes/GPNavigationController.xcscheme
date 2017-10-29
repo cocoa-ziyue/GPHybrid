@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2A0C6CE86657EE6DDB3B2CD9BD5C0917'
+               BlueprintIdentifier = '51D8316B165C980DDEEB489206813E0E'
                BlueprintName = 'GPNavigationController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'GPNavigationController.framework'>
