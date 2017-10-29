@@ -40,12 +40,7 @@
 
 - (void)propertyInit {
     self.showHostURl = NO;
-    self.showPageLoadView = YES;  //默认开启转圈
-    if (iOS8LESS) {
-        self.scrollView = self.uiWebView.uiWebView.scrollView;
-    } else {
-        self.scrollView = self.wkWebView.wkWebView.scrollView;
-    }
+    self.showPageLoadView = YES;    //默认开启转圈
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -67,13 +62,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-}
-
-
-- (void)setScrollView:(UIScrollView *)scrollView{
-    _scrollView = scrollView;
-//    scrollView.emptyDataSetDelegate = self;
-//    scrollView.emptyDataSetSource = self;
 }
 
 #pragma mark -

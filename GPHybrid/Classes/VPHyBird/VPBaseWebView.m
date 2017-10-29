@@ -11,8 +11,6 @@
 #import "Masonry.h"
 
 @interface VPBaseWebView () <UIWebViewDelegate, NJKWebViewProgressDelegate, UIScrollViewDelegate>
-
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
 //@property (nonatomic, strong) NoDataView *errorView;
 //@property (nonatomic, strong) VPPageLoadView *pageLoadView;
@@ -27,9 +25,6 @@
     if (self) {
         [self addSubview:self.uiWebView];
         self.uiWebView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NavHeight);
-        [self addSubview:self.activityIndicator];
-        self.activityIndicator.hidden = YES;            //暂时关闭
-        [self.activityIndicator setCenter:self.center];
         self.progressProxy = [[NJKWebViewProgress alloc] init];
         self.progressProxy.webViewProxyDelegate = self;
         self.progressProxy.progressDelegate = self;
@@ -65,12 +60,6 @@
     NSLog(@"UIWebView: web url is %@", _request.URL.absoluteString);
 }
 
-//- (VPPageLoadView *)pageLoadView {
-//    if (!_pageLoadView) {
-//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
-//    }
-//    return _pageLoadView;
-//}
 
 - (UIWebView *)uiWebView {
     if (!_uiWebView) {
@@ -85,13 +74,12 @@
     return _uiWebView;
 }
 
-- (UIActivityIndicatorView *)activityIndicator {
-    if (!_activityIndicator) {
-        _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
-        [_activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    }
-    return _activityIndicator;
-}
+//- (VPPageLoadView *)pageLoadView {
+//    if (!_pageLoadView) {
+//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+//    }
+//    return _pageLoadView;
+//}
 
 //- (NoDataView *)errorView {
 //    if (!_errorView) {
@@ -123,7 +111,6 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [self.activityIndicator startAnimating];
     if ([self.delegate respondsToSelector:@selector(webView:loadingStatus:)]) {
         [self.delegate webView:self loadingStatus:@"0"]; //开始加载
     }
@@ -133,9 +120,18 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self.activityIndicator stopAnimating];
-    if ([self.delegate respondsToSelector:@selector(webView:loadingStatus:)]) {
-        [self.delegate webView:self loadingStatus:@"1"]; //加载完毕
+    //需要替换,则开启替换
+    if (self.isSpecail) {
+        NSString *topstr = @"document.getElementsByClassName('tophead cl')[0].remove();";
+        [webView stringByEvaluatingJavaScriptFromString:topstr];
+        NSString *sharestr = @"document.getElementById('soshm').remove();";
+        [webView stringByEvaluatingJavaScriptFromString:sharestr];
+        NSString *SOHUCSstr = @"document.getElementById('SOHUCS').remove();";
+        [webView stringByEvaluatingJavaScriptFromString:SOHUCSstr];
+        NSString *footerstr = @"document.getElementsByClassName('footer')[0].remove();";
+        [webView stringByEvaluatingJavaScriptFromString:footerstr];
+        NSString *khdbox = @"document.getElementsByClassName('khdbox')[0].remove();";
+        [webView stringByEvaluatingJavaScriptFromString:khdbox];
     }
     if(self.showPageLoadView){
 //        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
@@ -144,10 +140,11 @@
     if ([self.delegate respondsToSelector:@selector(webView:getWebViewTitle:)]) {
         [self.delegate webView:self getWebViewTitle:webTitle]; //加载完毕，获取标题
     }
-    //需要替换,则开启替换
-    if (self.isSpecail) {
-        
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([self.delegate respondsToSelector:@selector(webView:loadingStatus:)]) {
+            [self.delegate webView:self loadingStatus:@"1"]; //加载完毕
+        }
+    });
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
