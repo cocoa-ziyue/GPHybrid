@@ -80,18 +80,18 @@
 #pragma mark - public method complements
 
 - (void)loadWebViewWithUrlStr:(NSString *)webUrlStr {
-    self.webSuperView = self.wkWebView.superview;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:webUrlStr]];
     self.webUrlRequest = request;
     if (iOS8LESS || self.isforceUseoldWebView) {
+        self.uiWebView.isSpecail = self.isSpecial;
         self.uiWebView.request = request;
-        if (!self.webSuperView) {
+        if (!self.uiWebView.superview) {
             [self.view addSubview:self.uiWebView];
         }
     } else {
         self.wkWebView.isopenCache = self.isopenCache;
         self.wkWebView.request = request;
-        if (!self.webSuperView) {
+        if (!self.wkWebView.superview) {
             [self.view addSubview:self.wkWebView];
         }
     }

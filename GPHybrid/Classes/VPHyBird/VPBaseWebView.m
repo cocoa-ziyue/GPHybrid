@@ -59,11 +59,8 @@
 - (void)setRequest:(NSMutableURLRequest *)request {
     _request = request;
     NSString *app_versions = [NSString stringWithFormat:@"ios%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-//    [_request setValue:[Defaults valueForKey:LANGUAGE] forHTTPHeaderField:LANG];
+
     [_request setValue:app_versions forHTTPHeaderField:@"app-versions"];
-//    [_request setValue:[Defaults valueForKey:@"token"] forHTTPHeaderField:@"token"];
-//    [_request setValue:[Defaults valueForKey:@"Deviceno"] forHTTPHeaderField:@"device-no"];
-//    [_request setValue:[Defaults valueForKey:@"uid"] forHTTPHeaderField:@"user-id"];
     [self.uiWebView loadRequest:_request];
     NSLog(@"UIWebView: web url is %@", _request.URL.absoluteString);
 }
@@ -147,11 +144,10 @@
     if ([self.delegate respondsToSelector:@selector(webView:getWebViewTitle:)]) {
         [self.delegate webView:self getWebViewTitle:webTitle]; //加载完毕，获取标题
     }
-    //关闭缓存
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDiskImageCacheEnabled"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabled"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    //需要替换,则开启替换
+    if (self.isSpecail) {
+        
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

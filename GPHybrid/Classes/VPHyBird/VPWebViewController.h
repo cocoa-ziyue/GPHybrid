@@ -44,7 +44,7 @@ typedef enum VPWebOverlayStatus {
 
 @property (assign, nonatomic) BOOL isopenCache; //是否开启缓存(目前只支持wkWebView)
 
-@property (assign, nonatomic) BOOL isopenLocal; //是否开启本地加载(目前只支持wkWebView)
+@property (assign, nonatomic) BOOL isSpecial; //是否开启替换(目前只支持uiWebView)
 
 @property (assign, nonatomic) BOOL openNewViewController; //是否开启网页里跳转原生(目前只支持wkWebView)
 
