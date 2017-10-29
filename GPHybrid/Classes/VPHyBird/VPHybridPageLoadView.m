@@ -108,7 +108,7 @@
     if (!_loadingLbl) {
         _loadingLbl = [[UILabel alloc] init];
         _loadingLbl.font = [UIFont fontWithName:@"Helvetica" size:11];
-        _loadingLbl.textColor = [UIColor colorWithRed:60 green:60 blue:60 alpha:1];
+        _loadingLbl.textColor = TextBgColor;
         _loadingLbl.textAlignment = NSTextAlignmentCenter;
         _loadingLbl.text = @"玩命加载中...";
     }
