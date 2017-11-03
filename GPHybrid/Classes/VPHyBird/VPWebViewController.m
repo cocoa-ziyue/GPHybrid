@@ -40,7 +40,11 @@
 
 - (void)propertyInit {
     self.showHostURl = NO;
-    self.showPageLoadView = YES;    //默认开启转圈
+    self.showPageLoadView = !self.showProgressView;    //默认开启转圈
+    if (self.hiddenAll) {
+        self.showPageLoadView = NO;
+        self.showProgressView = NO;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -356,9 +360,6 @@
         _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         _progressView.progressBarView.backgroundColor = NavBgColor;
         _progressView.progressBarView.tintColor = HWColor(50, 135, 255);
-        if (self.showProgressView) {
-            self.showPageLoadView = NO;
-        }
         _progressView.hidden = self.showPageLoadView;
         [self.view addSubview:_progressView];
         [self.view bringSubviewToFront:_progressView];
@@ -374,9 +375,6 @@
         _wkProgressView.backgroundColor = NavBgColor;
         _wkProgressView.tintColor = HWColor(50, 135, 255);
         _wkProgressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-        if (self.showProgressView) {
-            self.showPageLoadView = NO;
-        }
         _wkProgressView.hidden = self.showPageLoadView;
         [self.view addSubview:_wkProgressView];
         [self.view bringSubviewToFront:_wkProgressView];

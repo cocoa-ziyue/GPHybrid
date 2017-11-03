@@ -38,6 +38,8 @@ typedef enum VPWebOverlayStatus {
 
 @property (assign, nonatomic) BOOL showProgressView; //是否显示进度条，默认为NO
 
+@property (assign, nonatomic) BOOL hiddenAll;   //是否显示进度条，默认为NO
+
 @property (assign, nonatomic) BOOL showHostURl; //是否显示url，默认为NO
 
 @property (assign, nonatomic) BOOL isforceUseoldWebView;    //是否仅使用UIWebView
