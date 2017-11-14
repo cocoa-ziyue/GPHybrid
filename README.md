@@ -1,3 +1,32 @@
+GPHybrid
+pod安装 ：pod 'GPHybrid'
+
+一、相关介绍：
+1.模块构成
+
+2.使用介绍
+
+二、使用入门：
+1.继承Vc，见上图
+2.继承view（wkwebview、webviewview），见代码里注释
+3.JS和OC交互  
+3.1 OC --- > JS  
+ [self.bridge registerHandler:@"clickOnTips" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *info = (NSDictionary *)data;
+    }];
+
+3.2  JS  --- >  OC 
+[self.wkWebView.wkWebView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError *_Nullable error) {
+                CGFloat webHeight = [result floatValue];
+                self.commentTableView.emheaderHeight = webHeight;          
+}];
+
+更多功能查看注释。
+
+
+iOS技术交流群：674228487
+[我的博客](http://blog.csdn.net/u010670946)  
+
 # GPHybrid
 
 [![CI Status](http://img.shields.io/travis/ziyue92/GPHybrid.svg?style=flat)](https://travis-ci.org/ziyue92/GPHybrid)
