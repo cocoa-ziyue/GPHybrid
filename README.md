@@ -28,15 +28,11 @@ pod安装 ：pod 'GPHybrid'
                 self.commentTableView.emheaderHeight = webHeight;          
 }];
 
-## 更多功能查看注释。
+#### 更多功能请查看注释。
 
 #### iOS技术交流群：674228487
 #### [欢迎关注我的博客](http://blog.csdn.net/u010670946)  
 
-
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 iOS 8+
