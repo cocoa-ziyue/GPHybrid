@@ -5,15 +5,15 @@
 [![License](https://img.shields.io/cocoapods/l/GPHybrid.svg?style=flat)](http://cocoapods.org/pods/GPHybrid)
 [![Platform](https://img.shields.io/cocoapods/p/GPHybrid.svg?style=flat)](http://cocoapods.org/pods/GPHybrid)
 
-## 安装
-pod安装 ：pod 'GPHybrid'
+## 一、安装：
+pod安装：pod 'GPHybrid'
 
-## 一、相关介绍：
+## 二、相关介绍：
 ### 1.模块构成
 
 ### 2.使用介绍
 
-## 二、使用入门：
+## 三、使用入门：
 ### 1.继承Vc，见上图
 ### 2.继承view（wkwebview、webviewview），见代码里注释
 ### 3.JS和OC交互  
@@ -33,14 +33,12 @@ pod安装 ：pod 'GPHybrid'
 #### iOS技术交流群：674228487
 #### [欢迎关注我的博客](http://blog.csdn.net/u010670946)  
 
-
-## Requirements
+## 四、其他：
+### Requirements
 iOS 8+
 
-## Author
-
+### Author
 ziyue92, ziyue92@qq.com
 
-## License
-
+### License
 GPHybrid is available under the MIT license. See the LICENSE file for more info.
