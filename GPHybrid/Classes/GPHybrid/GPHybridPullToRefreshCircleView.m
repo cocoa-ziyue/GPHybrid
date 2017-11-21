@@ -6,12 +6,12 @@
 //  Copyright © 2017年 gangpeng shu. All rights reserved.
 //
 
-#import "VPHybridPullToRefreshCircleView.h"
+#import "GPHybridPullToRefreshCircleView.h"
 
 #define pi 3.14159265359
 #define DEGREES_TO_RADIANS(degress) ((pi * degress) / 180)
 
-@interface VPHybridPullToRefreshCircleView ()
+@interface GPHybridPullToRefreshCircleView ()
 
 @property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
@@ -19,7 +19,7 @@
 @end
 
 
-@implementation VPHybridPullToRefreshCircleView
+@implementation GPHybridPullToRefreshCircleView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -34,7 +34,7 @@
     if (status == 3) {
         [self.shapeLayer removeFromSuperlayer];
         self.shapeLayer = nil;
-        [self.layer removeAnimationForKey:@"vprotation"];
+        [self.layer removeAnimationForKey:@"GProtation"];
         self.isLoading = NO;
     }
 }
@@ -70,7 +70,7 @@
         }
         [self.shapeLayer removeFromSuperlayer];
         self.shapeLayer = nil;
-        [self.layer removeAnimationForKey:@"vprotation"];
+        [self.layer removeAnimationForKey:@"GProtation"];
         self.isLoading = NO;
     } else if (_contentOffY <= -50) {
         //1.获取图形上下文
@@ -104,7 +104,7 @@
             animation.toValue = @(2 * M_PI);
             animation.repeatCount = INFINITY;
             animation.removedOnCompletion = NO;
-            [self.layer addAnimation:animation forKey:@"vprotation"];
+            [self.layer addAnimation:animation forKey:@"GProtation"];
             self.isLoading = YES;
         }
     }

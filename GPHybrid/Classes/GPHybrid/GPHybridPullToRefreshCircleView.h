@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum VPCircleViewType {
+typedef enum GPCircleViewType {
     EVPCircleViewRefreshType = 1, //下拉刷新
     EVPCircleViewLoadingType,    //转场动画
-} VPCircleViewType;
+} GPCircleViewType;
 
-@interface VPHybridPullToRefreshCircleView : UIView
+@interface GPHybridPullToRefreshCircleView : UIView
 
 @property (nonatomic, strong) UIImageView *loadingImageView; //圆圈内部的图片
 @property (assign, nonatomic) CGFloat contentOffY;           //外界所传偏移量
 @property (assign, nonatomic) NSInteger status;              //外界所传状态
-@property (nonatomic, assign) VPCircleViewType circleType;
+@property (nonatomic, assign) GPCircleViewType circleType;
 
 @end

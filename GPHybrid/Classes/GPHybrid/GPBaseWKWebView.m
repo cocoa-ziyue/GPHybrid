@@ -1,29 +1,29 @@
 //
-//  VPBaseWKWebview.m
-//  vpGaming
+//  GPBaseWKWebview.m
+//  GPGaming
 //
 //  Created by shugangpeng on 2017/2/8.
 //  Copyright © 2017年 weipei. All rights reserved.
 //
 
-#import "VPBaseWKWebView.h"
+#import "GPBaseWKWebView.h"
 #import "NJKWebViewProgress.h"
 #import "NSString+Hybridmd5.h"
 #import <AFNetworking/AFImageDownloader.h>
 
-@interface VPBaseWKWebView () <WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate>
+@interface GPBaseWKWebView () <WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSString *h5orignContent;
 @property (nonatomic, strong) NSString *documentPath;
 //@property (nonatomic, strong) NoDataView *errorView;
-//@property (nonatomic, strong) VPPageLoadView *pageLoadView;
+//@property (nonatomic, strong) GPPageLoadView *pageLoadView;
 @property (nonatomic, assign) BOOL loadSuccess;
 
 @end
 
 
-@implementation VPBaseWKWebView
+@implementation GPBaseWKWebView
 
 #pragma mark - Init
 
@@ -84,7 +84,7 @@
         [self.delegate wkWebView:self loadingStatus:@"1"];
     }
     if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
     }
 }
 
@@ -95,7 +95,7 @@
         [self.delegate wkWebView:self loadingStatus:@"-1"];
     }
     if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
 //        [self addSubview:self.errorView];
 //        self.errorView.hidden = NO;
     }
@@ -156,7 +156,7 @@
 
 - (void)refreshAction:(UITapGestureRecognizer *)recognizer {
 //    self.errorView.hidden = YES;
-//    self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//    self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
 //    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
 //    dispatch_after(timer, dispatch_get_main_queue(), ^{
 //            [self setRequest:_request];
@@ -193,7 +193,7 @@
         return;
     }
     
-    NSString *firstImgPath = [[self cachePach] stringByAppendingPathComponent:[NSString vp_hybrid_md5:imgArr[0]]];
+    NSString *firstImgPath = [[self cachePach] stringByAppendingPathComponent:[NSString GP_hybrid_md5:imgArr[0]]];
     
     BOOL diskFlag = [self isFileExists:firstImgPath];
     if (diskFlag) {
@@ -209,7 +209,7 @@
         [[AFImageDownloader defaultInstance] downloadImageForURLRequest:request success:^(NSURLRequest *_Nonnull request, NSHTTPURLResponse *_Nullable response, UIImage *_Nonnull responseObject) {
             NSData *data = UIImageJPEGRepresentation(responseObject, 0.5);
             NSString *imageSource = [NSString stringWithFormat:@"data:image/jpg;base64,%@", [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn]];
-            NSString *localPath = [[self cachePach] stringByAppendingPathComponent:[NSString vp_hybrid_md5:imgUrl]];
+            NSString *localPath = [[self cachePach] stringByAppendingPathComponent:[NSString GP_hybrid_md5:imgUrl]];
             if (![data writeToFile:localPath atomically:NO]) {
                 NSLog(@"写入本地失败：%@", imgUrl);
                 return;
@@ -264,9 +264,9 @@
     //Get documents directory
     NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectoryPath = [directoryPaths objectAtIndex:0];
-    NSString *vpFileCachePath = [NSString stringWithFormat:@"%@/VPCache", documentDirectoryPath];
-    NSString *vpWebFileCache = [NSString stringWithFormat:@"%@/WebFile/", vpFileCachePath];
-    return vpWebFileCache;
+    NSString *GPFileCachePath = [NSString stringWithFormat:@"%@/GPCache", documentDirectoryPath];
+    NSString *GPWebFileCache = [NSString stringWithFormat:@"%@/WebFile/", GPFileCachePath];
+    return GPWebFileCache;
 }
 
 //判断是否存在
@@ -281,14 +281,14 @@
 //- (void)setShowPageLoadView:(BOOL)showPageLoadView {
 //    _showPageLoadView = showPageLoadView;
 //    if (showPageLoadView) {
-//        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//        self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
 //    }
 //}
 
 //转圈
-//- (VPPageLoadView *)pageLoadView {
+//- (GPPageLoadView *)pageLoadView {
 //    if (!_pageLoadView) {
-//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+//        _pageLoadView = [[GPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
 //    }
 //    return _pageLoadView;
 //}
@@ -296,7 +296,7 @@
 //获取h5源码
 - (NSString *)h5orignContent {
     if (!_h5orignContent) {
-        NSString *documentPath = [[self cachePach] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", [NSString vp_hybrid_md5:_request.URL.absoluteString]]];
+        NSString *documentPath = [[self cachePach] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", [NSString GP_hybrid_md5:_request.URL.absoluteString]]];
         _h5orignContent = [NSString stringWithContentsOfFile:documentPath encoding:NSUTF8StringEncoding error:nil];
     }
     return _h5orignContent;
@@ -304,7 +304,7 @@
 //获取h5源码路径
 - (NSString *)documentPath {
     if (!_documentPath) {
-        _documentPath = [[self cachePach] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", [NSString vp_hybrid_md5:_request.URL.absoluteString]]];
+        _documentPath = [[self cachePach] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", [NSString GP_hybrid_md5:_request.URL.absoluteString]]];
     }
     return _documentPath;
 }
@@ -343,7 +343,7 @@
 //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshAction:) ];
 //        [_errorView.logoImage addGestureRecognizer:tap];
 //        _errorView.errorType = 1;
-//        [_errorView noDataTitle:VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
+//        [_errorView noDataTitle:GPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
 //    }
 //    return _errorView;
 //}

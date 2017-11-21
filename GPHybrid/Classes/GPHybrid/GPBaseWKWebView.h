@@ -1,6 +1,6 @@
 //
-//  VPBaseWKWebview.h
-//  vpGaming
+//  GPBaseWKWebview.h
+//  GPGaming
 //
 //  Created by shugangpeng on 2017/2/8.
 //  Copyright © 2017年 weipei. All rights reserved.
@@ -10,14 +10,14 @@
 #import <WebKit/WebKit.h>
 #import "WebViewJavascriptBridge.h"
 
-@protocol VPWKWebViewDelegate;
+@protocol GPWKWebViewDelegate;
 
 
-@interface VPBaseWKWebView : UIView
+@interface GPBaseWKWebView : UIView
 
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, strong) NSMutableURLRequest *request; //请求的request
-@property (nonatomic, weak) id<VPWKWebViewDelegate> delegate;
+@property (nonatomic, weak) id<GPWKWebViewDelegate> delegate;
 @property (nonatomic, assign) BOOL isopenCache;                //是否开启缓存
 @property (nonatomic, assign) BOOL isForceRefresh;             //是否网页刷新，出现刷新则不走缓存
 @property (nonatomic, assign) BOOL openNewViewController;      //开启新vc
@@ -32,7 +32,7 @@
 
 @end
 
-@protocol VPWKWebViewDelegate <NSObject>
+@protocol GPWKWebViewDelegate <NSObject>
 
 @optional
 
@@ -42,14 +42,14 @@
  @param webView webView
  @param estimatedProgress estimatedProgress
  */
-- (void)wkWebView:(VPBaseWKWebView *)webView didChangeProgress:(double)estimatedProgress;
+- (void)wkWebView:(GPBaseWKWebView *)webView didChangeProgress:(double)estimatedProgress;
 
 /**
  监听网页加载状态成功或失败
  @param webView webView
  @param status status (1,成功，-1,失败)
  */
-- (void)wkWebView:(VPBaseWKWebView *)webView loadingStatus:(NSString *)status;
+- (void)wkWebView:(GPBaseWKWebView *)webView loadingStatus:(NSString *)status;
 
 /**
  异步获取网页URl
@@ -57,14 +57,14 @@
  @param webView webView
  @param title title
  */
-- (void)wkWebView:(VPBaseWKWebView *)webView getWebViewUrl:(NSString *)url;
+- (void)wkWebView:(GPBaseWKWebView *)webView getWebViewUrl:(NSString *)url;
 /**
  异步获取网页标题
  
  @param webView webView
  @param title title
  */
-- (void)wkWebView:(VPBaseWKWebView *)webView getWebViewTitle:(NSString *)title;
+- (void)wkWebView:(GPBaseWKWebView *)webView getWebViewTitle:(NSString *)title;
 
 /**
  监听网页滚动

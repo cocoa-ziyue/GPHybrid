@@ -1,19 +1,19 @@
 //
-//  VPPageLoadView.m
+//  GPPageLoadView.m
 //  Pods
 //
 //  Created by gangpeng shu on 2017/4/10.
 //
 //
 
-#import "VPHybridPageLoadView.h"
+#import "GPHybridPageLoadView.h"
 #import "UIView+HybridMJExtension.h"
 
-@interface VPHybridPageLoadView ()
+@interface GPHybridPageLoadView ()
 
 @end
 
-@implementation VPHybridPageLoadView
+@implementation GPHybridPageLoadView
 
 - (instancetype)initInSuperView:(UIView *)superView withframeY:(CGFloat)frameY updateCiclerViewY:(CGFloat)ciclerViewY{
     if (self = [super initWithFrame:CGRectZero]) {
@@ -53,15 +53,15 @@
 
 #pragma mark - 控制转圈状态
 
-- (void)setLoadStatus:(VPPageLoadViewStatus)loadStatus {
+- (void)setLoadStatus:(GPPageLoadViewStatus)loadStatus {
     _loadStatus = loadStatus;
     switch (loadStatus) {
-        case VPPageLoadViewStatusActive:
+        case GPPageLoadViewStatusActive:
         {
             [self startLoading];
         }
             break;
-        case VPPageLoadViewStatusEnd:
+        case GPPageLoadViewStatusEnd:
         {
             [self endLoading];
         }
@@ -72,13 +72,13 @@
 }
 
 - (void)startLoading {
-    _loadStatus = VPPageLoadViewStatusActive;
+    _loadStatus = GPPageLoadViewStatusActive;
     self.circleView.contentOffY = -50;
     self.superview.userInteractionEnabled = NO;
 }
 
 - (void)endLoading {
-    _loadStatus = VPPageLoadViewStatusEnd;
+    _loadStatus = GPPageLoadViewStatusEnd;
     self.superview.userInteractionEnabled = YES;
     self.circleView.status = 3;
     if (self.circleView) {
@@ -115,9 +115,9 @@
     return _loadingLbl;
 }
 
-- (VPHybridPullToRefreshCircleView *)circleView {
+- (GPHybridPullToRefreshCircleView *)circleView {
     if (!_circleView) {
-        _circleView = [[VPHybridPullToRefreshCircleView alloc] init];
+        _circleView = [[GPHybridPullToRefreshCircleView alloc] init];
         _circleView.circleType = EVPCircleViewLoadingType;
         _circleView.backgroundColor = [UIColor clearColor];
     }

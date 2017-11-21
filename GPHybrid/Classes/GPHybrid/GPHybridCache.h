@@ -1,5 +1,5 @@
 //
-//  VPHybridCache.h
+//  GPHybridCache.h
 //  Pods
 //
 //  Created by gangpeng shu on 2017/6/2.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface VPHybridCache : NSObject
+@interface GPHybridCache : NSObject
 
 /**
  获取磁盘中的缓存的大小

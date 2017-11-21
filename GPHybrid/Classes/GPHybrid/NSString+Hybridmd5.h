@@ -17,6 +17,6 @@
  @param string 要加密的字符串
  @return 加密后的字符串
  */
-+ (NSString *)vp_hybrid_md5:(NSString *)string;
++ (NSString *)GP_hybrid_md5:(NSString *)string;
 
 @end

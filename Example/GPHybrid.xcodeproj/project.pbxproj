@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08510B356CCAA54342E3B2D7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		08510B356CCAA54342E3B2D7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GPHybrid_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPHybrid_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,9 +60,9 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		890A21CD6A4CC3D12D552A67 /* Pods-GPHybrid_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPHybrid_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPHybrid_Example/Pods-GPHybrid_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9B84E2991988A463CEED2F6B /* Pods_GPHybrid_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPHybrid_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A11F04FA515935C5D4B0AF1A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A11F04FA515935C5D4B0AF1A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AE0EC4E6CA08D75E31BB1464 /* Pods-GPHybrid_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPHybrid_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPHybrid_Example/Pods-GPHybrid_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		C41D2CD79DBC4EF4AE196B6F /* GPHybrid.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = GPHybrid.podspec; path = ../GPHybrid.podspec; sourceTree = "<group>"; };
+		C41D2CD79DBC4EF4AE196B6F /* GPHybrid.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GPHybrid.podspec; path = ../GPHybrid.podspec; sourceTree = "<group>"; };
 		D0F671596DDEF8065E7E639E /* Pods_GPHybrid_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPHybrid_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -241,6 +241,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = ziyue92;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = NG47NYQZ99;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -486,6 +489,7 @@
 			baseConfigurationReference = AE0EC4E6CA08D75E31BB1464 /* Pods-GPHybrid_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NG47NYQZ99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GPHybrid/GPHybrid-Prefix.pch";
 				INFOPLIST_FILE = "GPHybrid/GPHybrid-Info.plist";
@@ -501,6 +505,7 @@
 			baseConfigurationReference = 890A21CD6A4CC3D12D552A67 /* Pods-GPHybrid_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NG47NYQZ99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GPHybrid/GPHybrid-Prefix.pch";
 				INFOPLIST_FILE = "GPHybrid/GPHybrid-Info.plist";

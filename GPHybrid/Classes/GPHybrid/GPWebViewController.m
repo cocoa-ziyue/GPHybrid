@@ -1,30 +1,30 @@
 //
-//  VPWebViewController.m
-//  vpGaming
+//  GPWebViewController.m
+//  GPGaming
 //
 //  Created by tortoise on 17/1/5.
 //  Copyright © 2017年 weipei. All rights reserved.
 //
 
-#import "VPWebViewController.h"
+#import "GPWebViewController.h"
 #import "NJKWebViewProgressView.h"
 #import "GPNavtionBarDefines.h"
 #import "extobjc.h"
-#import "VPHybridPageLoadView.h"
+#import "GPHybridPageLoadView.h"
 
-@interface VPWebViewController () <VPWebViewDelegate, VPWKWebViewDelegate>
+@interface GPWebViewController () <GPWebViewDelegate, GPWKWebViewDelegate>
 
 @property (nonatomic, strong) NJKWebViewProgressView *progressView; //进度条
 @property (nonatomic, strong) UIProgressView *wkProgressView;       //进度条
 @property (nonatomic, strong) UIView *webSuperView;
 @property (nonatomic, strong) UILabel *hostDeslbl;                 //host名称
 @property (assign, nonatomic) BOOL showPageLoadView;              //是否开启转圈
-@property (nonatomic, strong) VPHybridPageLoadView *pageLoadView;     //转圈
+@property (nonatomic, strong) GPHybridPageLoadView *pageLoadView;     //转圈
 @property (nonatomic, strong, readwrite) NSString *currentUrl;   //当前请求地址
 
 @end
 
-@implementation VPWebViewController
+@implementation GPWebViewController
 
 #pragma mark -
 #pragma mark - view lifecycle
@@ -87,7 +87,7 @@
             [self.view addSubview:self.wkWebView];
         }
     }
-    self.status = VPWebOverlayStatusLoading;
+    self.status = GPWebOverlayStatusLoading;
 }
 
 - (void)rediRectWebViewWithUrlStr:(NSString *)webUrlStr {
@@ -112,7 +112,7 @@
             [self.view addSubview:self.wkWebView];
         }
     }
-    self.status = VPWebOverlayStatusLoading;
+    self.status = GPWebOverlayStatusLoading;
 }
 
 - (void)loadWebViewWithUrlRequest:(NSMutableURLRequest *)urlRequest {
@@ -128,23 +128,23 @@
             [self.view addSubview:self.wkWebView];
         }
     }
-    self.status = VPWebOverlayStatusLoading;
+    self.status = GPWebOverlayStatusLoading;
 }
 
-- (void)setStatus:(VPWebOverlayStatus )status {
+- (void)setStatus:(GPWebOverlayStatus )status {
     _status = status;
     switch (status) {
-        case VPWebOverlayStatusLoading:
+        case GPWebOverlayStatusLoading:
         {
             if (self.showPageLoadView) {       //开启转圈
-                self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+                self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
             }
         }
             break;
-        case VPWebOverlayStatusSuccess:
+        case GPWebOverlayStatusSuccess:
         {
             if (self.showPageLoadView) {       //结束转圈
-                self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+                self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
             }
             if (self.showHostURl) {
                 [self setUrlDescpritionShow:self.showHostURl];
@@ -156,17 +156,17 @@
             }
         }
             break;
-        case VPWebOverlayStatusError:
+        case GPWebOverlayStatusError:
         {
             if (self.showPageLoadView) {       //结束转圈
-                self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+                self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
             }
         }
             break;
-        case VPWebOverlayStatusReload:
+        case GPWebOverlayStatusReload:
         {
             if (self.showPageLoadView) {       //开启转圈
-                self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+                self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
             }
         }
             break;
@@ -201,32 +201,32 @@
 
 
 #pragma mark -
-#pragma mark VPWebViewDelegate methods
+#pragma mark GPWebViewDelegate methods
 
-- (void)webView:(VPBaseWebView *)webView didChangeProgress:(double)estimatedProgress {
+- (void)webView:(GPBaseWebView *)webView didChangeProgress:(double)estimatedProgress {
     [self.progressView setProgress:estimatedProgress animated:YES];
 }
 
-- (void)webView:(VPBaseWebView *)webView loadingStatus:(NSString *)status {
+- (void)webView:(GPBaseWebView *)webView loadingStatus:(NSString *)status {
     if ([status isEqualToString:@"0"]) {
 
     } else if ([status isEqualToString:@"1"]) {
-        self.status = VPWebOverlayStatusSuccess;
+        self.status = GPWebOverlayStatusSuccess;
     } else if ([status isEqualToString:@"-1"]) {
-        self.status = VPWebOverlayStatusError;
+        self.status = GPWebOverlayStatusError;
     }
     if (self.webVLoadingBlock) {
         self.webVLoadingBlock(self.status);
     }
 }
 
-- (void)webView:(VPBaseWebView *)webView getWebViewTitle:(NSString *)title {
+- (void)webView:(GPBaseWebView *)webView getWebViewTitle:(NSString *)title {
     if (self.getWebVTitle) {
         self.getWebVTitle(title);
     }
 }
 
-- (void)webView:(VPBaseWebView *)webView cunrrentUrl:(NSString *)url {
+- (void)webView:(GPBaseWebView *)webView cunrrentUrl:(NSString *)url {
     self.currentUrl = url;
     if (self.getWebVUrl) {
         self.getWebVUrl(url);
@@ -234,15 +234,15 @@
 }
 
 #pragma mark -
-#pragma mark VPWKWebViewDelegate methods
-- (void)wkWebView:(VPBaseWKWebView *)webView getWebViewUrl:(NSString *)url {
+#pragma mark GPWKWebViewDelegate methods
+- (void)wkWebView:(GPBaseWKWebView *)webView getWebViewUrl:(NSString *)url {
     self.currentUrl = url;
     if (self.getWebVUrl) {
         self.getWebVUrl(url);
     }
 }
 
-- (void)wkWebView:(VPBaseWKWebView *)webView didChangeProgress:(double)estimatedProgress {
+- (void)wkWebView:(GPBaseWKWebView *)webView didChangeProgress:(double)estimatedProgress {
     [self.wkProgressView setProgress:estimatedProgress animated:YES];
     if (estimatedProgress == 1.f) {
         [self.wkProgressView removeFromSuperview];
@@ -250,20 +250,20 @@
     }
 }
 
-- (void)wkWebView:(VPBaseWKWebView *)webView loadingStatus:(NSString *)status {
+- (void)wkWebView:(GPBaseWKWebView *)webView loadingStatus:(NSString *)status {
     if ([status isEqualToString:@"0"]) {
       
     } else if ([status isEqualToString:@"1"]) {
-        self.status = VPWebOverlayStatusSuccess;
+        self.status = GPWebOverlayStatusSuccess;
     } else if ([status isEqualToString:@"-1"]) {
-        self.status = VPWebOverlayStatusError;
+        self.status = GPWebOverlayStatusError;
     }
     if (self.webVLoadingBlock) {
         self.webVLoadingBlock(self.status);
     }
 }
 
-- (void)wkWebView:(VPBaseWKWebView *)webView getWebViewTitle:(NSString *)title {
+- (void)wkWebView:(GPBaseWKWebView *)webView getWebViewTitle:(NSString *)title {
     if (self.getWebVTitle) {
         self.getWebVTitle(title);
     }
@@ -286,9 +286,9 @@
 #pragma mark DZNEmptyDataSetDelegate methods
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    if (self.status == VPWebOverlayStatusError) {
+    if (self.status == GPWebOverlayStatusError) {
         if (!self.emIcon || [self.emIcon isEqualToString:@""]) {
-            self.emIcon = [self getbundlePathWithImgName:@"vpcommon_nonet_icon"];
+            self.emIcon = [self getbundlePathWithImgName:@"GPcommon_nonet_icon"];
         }
     } else {
         return nil;
@@ -300,25 +300,25 @@
 #pragma mark -
 #pragma mark Accesstor methods
 
-- (VPHybridPageLoadView *)pageLoadView {
+- (GPHybridPageLoadView *)pageLoadView {
     if (!_pageLoadView) {
-        _pageLoadView = [[VPHybridPageLoadView alloc]initInSuperView:self.baseWebViewOwner withframeY:0 updateCiclerViewY:(self.baseWebViewOwner.frame.size.height - SCREEN_HEIGHT)/2];
+        _pageLoadView = [[GPHybridPageLoadView alloc]initInSuperView:self.baseWebViewOwner withframeY:0 updateCiclerViewY:(self.baseWebViewOwner.frame.size.height - SCREEN_HEIGHT)/2];
     }
     return _pageLoadView;
 }
 
-- (VPBaseWebView *)uiWebView {
+- (GPBaseWebView *)uiWebView {
     if (!_uiWebView) {
-        _uiWebView = [[VPBaseWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH,SCREEN_HEIGHT - NavHeight)];
+        _uiWebView = [[GPBaseWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH,SCREEN_HEIGHT - NavHeight)];
         _uiWebView.backgroundColor = [UIColor whiteColor];
         _uiWebView.delegate = self;
     }
     return _uiWebView;
 }
 
-- (VPBaseWKWebView *)wkWebView {
+- (GPBaseWKWebView *)wkWebView {
     if (!_wkWebView) {
-        _wkWebView = [[VPBaseWKWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH, SCREEN_HEIGHT- NavHeight)];
+        _wkWebView = [[GPBaseWKWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH, SCREEN_HEIGHT- NavHeight)];
         _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.delegate = self;
         _wkWebView.openNewViewController = self.openNewViewController;

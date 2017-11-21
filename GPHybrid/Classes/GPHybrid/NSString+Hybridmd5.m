@@ -12,7 +12,7 @@
 
 @implementation NSString (Hybridmd5)
 
-+ (NSString *)vp_hybrid_md5:(NSString *)string {
++ (NSString *)GP_hybrid_md5:(NSString *)string {
     if (string == nil || [string length] == 0) {
         return nil;
     }

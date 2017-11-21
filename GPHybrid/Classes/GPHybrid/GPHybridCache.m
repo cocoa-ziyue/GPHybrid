@@ -1,25 +1,25 @@
 //
-//  VPHybridCache.m
+//  GPHybridCache.m
 //  Pods
 //
 //  Created by gangpeng shu on 2017/6/2.
 //
 //
 
-#import "VPHybridCache.h"
+#import "GPHybridCache.h"
 
 
-@interface VPHybridCache ()
+@interface GPHybridCache ()
 
 @end
 
 
-@implementation VPHybridCache
+@implementation GPHybridCache
 
 static inline NSString *cacheDir() {
     return [NSString stringWithFormat:@"%@%@%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
                                                      firstObject],
-                                      @"/VPCache", @"/WebFile/"];
+                                      @"/GPCache", @"/WebFile/"];
 }
 
 + (long long)getCacheSize {

@@ -1,24 +1,24 @@
 //
-//  VPBaseWebView.m
-//  vpGaming
+//  GPBaseWebView.m
+//  GPGaming
 //
 //  Created by shugangpeng on 17/1/5.
 //  Copyright © 2017年 weipei. All rights reserved.
 //
 
-#import "VPBaseWebView.h"
+#import "GPBaseWebView.h"
 #import "NJKWebViewProgress.h"
 #import "Masonry.h"
 
-@interface VPBaseWebView () <UIWebViewDelegate, NJKWebViewProgressDelegate, UIScrollViewDelegate>
+@interface GPBaseWebView () <UIWebViewDelegate, NJKWebViewProgressDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
 //@property (nonatomic, strong) NoDataView *errorView;
-//@property (nonatomic, strong) VPPageLoadView *pageLoadView;
+//@property (nonatomic, strong) GPPageLoadView *pageLoadView;
 
 @end
 
 
-@implementation VPBaseWebView
+@implementation GPBaseWebView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -44,7 +44,7 @@
 
 //- (void)refreshAction:(UITapGestureRecognizer *)recognizer {
 //    self.errorView.hidden = YES;
-//    self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//    self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
 //    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
 //    dispatch_after(timer, dispatch_get_main_queue(), ^{
 //        [self setRequest:_request];
@@ -74,9 +74,9 @@
     return _uiWebView;
 }
 
-//- (VPPageLoadView *)pageLoadView {
+//- (GPPageLoadView *)pageLoadView {
 //    if (!_pageLoadView) {
-//        _pageLoadView = [[VPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+//        _pageLoadView = [[GPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
 //    }
 //    return _pageLoadView;
 //}
@@ -88,7 +88,7 @@
 //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshAction:) ];
 //        [_errorView.logoImage addGestureRecognizer:tap];
 //        _errorView.errorType = 1;
-//        [_errorView noDataTitle:VPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
+//        [_errorView noDataTitle:GPLocalizedStringFromModule(@"网络不给力,请检查网络或点击屏幕刷新", kVPCommonLocalized)];
 //    }
 //    return _errorView;
 //}
@@ -115,7 +115,7 @@
         [self.delegate webView:self loadingStatus:@"0"]; //开始加载
     }
     if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = VPPageLoadViewStatusActive;
+//        self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
     }
 }
 
@@ -134,7 +134,7 @@
         [webView stringByEvaluatingJavaScriptFromString:khdbox];
     }
     if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
     }
     NSString *webTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if ([self.delegate respondsToSelector:@selector(webView:getWebViewTitle:)]) {
@@ -152,7 +152,7 @@
         [self.delegate webView:self loadingStatus:@"-1"]; //加载失败
     }
 //    if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = VPPageLoadViewStatusEnd;
+//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
 //        [self addSubview:self.errorView];
 //        self.errorView.logoImage.centerY = self.errorView.height - self.errorView.logoImage.height/2;
 //        self.errorView.hidden = NO;

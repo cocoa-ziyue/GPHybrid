@@ -1,6 +1,6 @@
 //
-//  VPWebViewController.h
-//  vpGaming
+//  GPWebViewController.h
+//  GPGaming
 //
 //  Created by tortoise on 17/1/5.
 //  Copyright © 2017年 weipei. All rights reserved.
@@ -10,28 +10,28 @@
 #import "WebViewJavascriptBridge.h"
 #import "WKWebViewJavascriptBridge.h"
 #import <WebKit/WebKit.h>
-#import "VPBaseWebView.h"
-#import "VPBaseWKWebView.h"
+#import "GPBaseWebView.h"
+#import "GPBaseWKWebView.h"
 
 //提示状态机
-typedef enum VPWebOverlayStatus {
-    VPWebOverlayStatusSuccess = 1, //加载成功
-    VPWebOverlayStatusLoading = 0,    //加载中
-    VPWebOverlayStatusError = -1,      //网络错误
-    VPWebOverlayStatusReload = 2,     //重新加载
-} VPWebOverlayStatus;
+typedef enum GPWebOverlayStatus {
+    GPWebOverlayStatusSuccess = 1, //加载成功
+    GPWebOverlayStatusLoading = 0,    //加载中
+    GPWebOverlayStatusError = -1,      //网络错误
+    GPWebOverlayStatusReload = 2,     //重新加载
+} GPWebOverlayStatus;
 
 
-@interface VPWebViewController : GPBaseViewController
+@interface GPWebViewController : GPBaseViewController
 
-@property (nonatomic, strong) VPBaseWebView *uiWebView;   //uiwebview视图
-@property (nonatomic, strong) VPBaseWKWebView *wkWebView; //wkwebview视图
+@property (nonatomic, strong) GPBaseWebView *uiWebView;   //uiwebview视图
+@property (nonatomic, strong) GPBaseWKWebView *wkWebView; //wkwebview视图
 @property (nonatomic, strong) NSString *titleName;        //外界传入标题(写死)
 @property (nonatomic, strong) UIView *baseWebViewOwner;   //webview的父类
 @property (nonatomic, strong) UIView *baseWebView;        //webview
 @property (nonatomic, strong) UIScrollView *scrollView;   //scrollView
 
-@property (nonatomic, copy) void (^webVLoadingBlock)(VPWebOverlayStatus); //加载结果回调
+@property (nonatomic, copy) void (^webVLoadingBlock)(GPWebOverlayStatus); //加载结果回调
 @property (nonatomic, copy) void (^getWebVTitle)(NSString *);             //加赞成功后,动态获取网页标题
 @property (nonatomic, copy) void (^getWebVUrl)(NSString *);               //加赞成功后,动态获取网页Url
 @property (nonatomic, copy) void (^breakIntoNativePage)(NSString *);    //跳转到原生页面
@@ -52,7 +52,7 @@ typedef enum VPWebOverlayStatus {
 
 @property (nonatomic, strong) WebViewJavascriptBridge *bridge; //js交互桥接
 
-@property (nonatomic, assign) VPWebOverlayStatus status;       //网页加载状态
+@property (nonatomic, assign) GPWebOverlayStatus status;       //网页加载状态
 
 @property (nonatomic, strong) NSString *emIcon;               //自定义图片
 @property (nonatomic, assign) CGFloat emTitleFont;            //字体大小
