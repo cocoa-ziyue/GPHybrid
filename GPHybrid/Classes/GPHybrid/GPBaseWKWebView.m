@@ -3,7 +3,7 @@
 //  GPGaming
 //
 //  Created by shugangpeng on 2017/2/8.
-//  Copyright © 2017年 weipei. All rights reserved.
+//  Copyright © 2017年 sgp. All rights reserved.
 //
 
 #import "GPBaseWKWebView.h"

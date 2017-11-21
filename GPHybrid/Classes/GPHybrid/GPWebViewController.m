@@ -2,8 +2,8 @@
 //  GPWebViewController.m
 //  GPGaming
 //
-//  Created by tortoise on 17/1/5.
-//  Copyright © 2017年 weipei. All rights reserved.
+//  Created by sgp on 17/1/5.
+//  Copyright © 2017年 sgp. All rights reserved.
 //
 
 #import "GPWebViewController.h"

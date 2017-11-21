@@ -3,7 +3,7 @@
 //  GPGaming
 //
 //  Created by tortoise on 17/1/5.
-//  Copyright © 2017年 weipei. All rights reserved.
+//  Copyright © 2017年 sgp. All rights reserved.
 //
 
 #import "GPBaseViewController.h"
@@ -46,7 +46,7 @@ typedef enum GPWebOverlayStatus {
 
 @property (assign, nonatomic) BOOL isopenCache; //是否开启缓存(目前只支持wkWebView)
 
-@property (assign, nonatomic) BOOL isSpecial; //是否开启替换(目前只支持uiWebView)
+@property (assign, nonatomic) BOOL isSpecial;   //是否开启替换(目前只支持uiWebView)
 
 @property (assign, nonatomic) BOOL openNewViewController; //是否开启网页里跳转原生(目前只支持wkWebView)
 

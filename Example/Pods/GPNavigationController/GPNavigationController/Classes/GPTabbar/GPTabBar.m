@@ -3,7 +3,7 @@
 //  GPGaming
 //
 //  Created by yzx on 15/5/19.
-//  Copyright (c) 2015年 weipei. All rights reserved.
+//  Copyright (c) 2015年 sgp. All rights reserved.
 //
 
 #import "GPTabBar.h"
