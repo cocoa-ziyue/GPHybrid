@@ -37,6 +37,7 @@ TODO: Add long description of the pod here.
   # }
 
 s.prefix_header_contents = '
+
 //屏幕适配
 #define FitAllScreen(value1, value2) (SCREEN_WIDTH >= 414 ? (Fit6P(value1)) : (Fit6(value2)))
 #define Fit6P(value) ((value) / 1242.0f * [UIScreen mainScreen].bounds.size.width)
@@ -44,7 +45,6 @@ s.prefix_header_contents = '
 #define FitAllFont(value1, value2) (SCREEN_WIDTH >= 414 ? (value1) : (value2))
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define NavHeight 60
 
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 #define iOS8LESS ([[UIDevice currentDevice].systemVersion doubleValue] < 8.0)
@@ -54,6 +54,13 @@ s.prefix_header_contents = '
 #define HWColor(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
 #define NavBgColor HWColor(23,28,32)
 #define TextBgColor HWColor(60,60,60)
+
+#define isIPhoneXByHeight ([[UIScreen mainScreen] bounds].size.height == 812.f ? 1 :0 )//根据屏幕高度判断
+#define StatusHeight (isIPhoneXByHeight ? 44 : 20)//statusTabbar的高度，iPhone X的高度44
+#define NavHeight (isIPhoneXByHeight ? 88 : 64)//导航栏整体高度
+#define TopSafeAreaHeight (isIPhoneXByHeight ? 44 : 0)//顶部部安全距离高度
+#define BottomSafeAreaHeight (isIPhoneXByHeight ? 34 : 0)//底部安全距离高度
+#define TabbarHeight (isIPhoneXByHeight ? 83 : 49)//Tabbar的高度，iPhone X的高度83
 
 '
 

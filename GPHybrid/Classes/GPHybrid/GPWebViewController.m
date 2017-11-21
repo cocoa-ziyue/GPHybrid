@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) NJKWebViewProgressView *progressView; //进度条
 @property (nonatomic, strong) UIProgressView *wkProgressView;       //进度条
-@property (nonatomic, strong) UIView *webSuperView;
 @property (nonatomic, strong) UILabel *hostDeslbl;                 //host名称
 @property (assign, nonatomic) BOOL showPageLoadView;              //是否开启转圈
 @property (nonatomic, strong) GPHybridPageLoadView *pageLoadView;     //转圈
@@ -97,18 +96,17 @@
     self.wkWebView.wkWebView = nil;
     self.wkWebView = nil;
     
-    self.webSuperView = self.wkWebView.superview;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:webUrlStr]];
     self.webUrlRequest = request;
     if (iOS8LESS || self.isforceUseoldWebView) {
         self.uiWebView.request = request;
-        if (!self.webSuperView) {
+        if (!self.uiWebView.superview) {
             [self.view addSubview:self.uiWebView];
         }
     } else {
         self.wkWebView.isopenCache = self.isopenCache;
         self.wkWebView.request = request;
-        if (!self.webSuperView) {
+        if (!self.uiWebView.superview) {
             [self.view addSubview:self.wkWebView];
         }
     }
@@ -309,7 +307,7 @@
 
 - (GPBaseWebView *)uiWebView {
     if (!_uiWebView) {
-        _uiWebView = [[GPBaseWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH,SCREEN_HEIGHT - NavHeight)];
+        _uiWebView = [[GPBaseWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH,SCREEN_HEIGHT - NavHeight - BottomSafeAreaHeight)];
         _uiWebView.backgroundColor = [UIColor whiteColor];
         _uiWebView.delegate = self;
     }
@@ -318,7 +316,7 @@
 
 - (GPBaseWKWebView *)wkWebView {
     if (!_wkWebView) {
-        _wkWebView = [[GPBaseWKWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH, SCREEN_HEIGHT- NavHeight)];
+        _wkWebView = [[GPBaseWKWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH, SCREEN_HEIGHT- NavHeight - BottomSafeAreaHeight)];
         _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.delegate = self;
         _wkWebView.openNewViewController = self.openNewViewController;
