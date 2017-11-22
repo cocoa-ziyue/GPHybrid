@@ -33,3 +33,5 @@
 #define TopSafeAreaHeight (isIPhoneXByHeight ? 44 : 0)//顶部部安全距离高度
 #define BottomSafeAreaHeight (isIPhoneXByHeight ? 34 : 0)//底部安全距离高度
 #define TabbarHeight (isIPhoneXByHeight ? 83 : 49)//Tabbar的高度，iPhone X的高度83
+
+#import "Masonry.h"
