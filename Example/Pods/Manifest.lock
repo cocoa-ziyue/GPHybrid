@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - GPHybrid (0.1.3):
+  - GPHybrid (0.1.5):
     - AFNetworking
     - GPNavigationController
     - libextobjc
@@ -68,12 +68,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  GPHybrid: 43fe05b904c9f55545bacbee8e79ae1fc096c572
+  GPHybrid: f4262461bbfbab541e4f8d4ffc9dd202a7304976
   GPNavigationController: 08d629ea5316881c4b7633ab90d6164bdc529b86
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
-PODFILE CHECKSUM: 57de453332f3e98659de0424ffd0d6bf22b025ac
+PODFILE CHECKSUM: 88430653721ac79f490d6c77b8a106a5fb51e590
 
 COCOAPODS: 1.3.1

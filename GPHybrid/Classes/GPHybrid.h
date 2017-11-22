@@ -12,6 +12,7 @@
 #import "GPBaseWebView.h"
 #import "GPBaseWKWebView.h"
 #import "GPWebViewController.h"
+#import "GPBaseViewController.h"
 #import "GPHybridCache.h"
 #import "Masonry.h"
 

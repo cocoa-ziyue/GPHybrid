@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'GPHybrid'
-  s.version          = '0.1.4'
-  s.summary          = 'A short description of GPHybrid.'
+s.name             = 'GPHybrid'
+s.version          = '0.1.5'
+s.summary          = 'A short description of GPHybrid.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,31 +17,31 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
+s.description      = <<-DESC
 TODO: Add long description of the pod here.
-                       DESC
+DESC
 
-  s.homepage         = 'https://github.com/ziyue92/GPHybrid'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'ziyue92' => 'ziyue92@qq.com' }
-  s.source           = { :git => 'https://github.com/ziyue92/GPHybrid.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+s.homepage         = 'https://github.com/ziyue92/GPHybrid'
+# s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+s.license          = { :type => 'MIT', :file => 'LICENSE' }
+s.author           = { 'ziyue92' => 'ziyue92@qq.com' }
+s.source           = { :git => 'https://github.com/ziyue92/GPHybrid.git', :tag => s.version.to_s }
+# s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+s.ios.deployment_target = '8.0'
 
-  s.source_files = 'GPHybrid/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'GPHybrid' => ['GPHybrid/Assets/*.png']
-  # }
+s.source_files = 'GPHybrid/Classes/**/*'
+
+# s.resource_bundles = {
+#   'GPHybrid' => ['GPHybrid/Assets/*.png']
+# }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
 # s.frameworks = 'UIKit', 'MapKit'
-    s.dependency 'Masonry'
-    s.dependency 'AFNetworking'
-    s.dependency 'GPNavigationController'
-    s.dependency 'libextobjc'
+s.dependency 'Masonry'
+s.dependency 'AFNetworking'
+s.dependency 'GPNavigationController'
+s.dependency 'libextobjc'
 
 s.prefix_header_contents = '
 
@@ -69,10 +69,8 @@ s.prefix_header_contents = '
 #define BottomSafeAreaHeight (isIPhoneXByHeight ? 34 : 0)//底部安全距离高度
 #define TabbarHeight (isIPhoneXByHeight ? 83 : 49)//Tabbar的高度，iPhone X的高度83
 
-#import "Masonry.h"
-#import "GPBaseViewController.h"
-
 '
 
 
 end
+

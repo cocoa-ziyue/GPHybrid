@@ -1,0 +1,6 @@
+framework module Pods_GPHybrid_Tests {
+  umbrella header "Pods-GPHybrid_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

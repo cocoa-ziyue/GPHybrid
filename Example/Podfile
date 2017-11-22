@@ -2,5 +2,10 @@ use_frameworks!
 
 target 'GPHybrid_Example' do
   pod 'GPHybrid', :path => '../'
-  
+
+  target 'GPHybrid_Tests' do
+    inherit! :search_paths
+
+    
+  end
 end
