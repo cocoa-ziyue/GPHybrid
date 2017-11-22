@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GPHybrid'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'A short description of GPHybrid.'
 
 # This description is used to generate tags and improve search results.
@@ -70,6 +70,7 @@ s.prefix_header_contents = '
 #define TabbarHeight (isIPhoneXByHeight ? 83 : 49)//Tabbar的高度，iPhone X的高度83
 
 #import "Masonry.h"
+#import "GPBaseViewController.h"
 
 '
 

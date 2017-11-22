@@ -35,3 +35,4 @@
 #define TabbarHeight (isIPhoneXByHeight ? 83 : 49)//Tabbar的高度，iPhone X的高度83
 
 #import "Masonry.h"
+#import "GPBaseViewController.h"

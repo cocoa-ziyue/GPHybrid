@@ -6,7 +6,6 @@
 //  Copyright © 2017年 sgp. All rights reserved.
 //
 
-#import "GPBaseViewController.h"
 #import "WebViewJavascriptBridge.h"
 #import "WKWebViewJavascriptBridge.h"
 #import <WebKit/WebKit.h>
