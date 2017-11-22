@@ -36,13 +36,6 @@ s.source_files = 'GPHybrid/Classes/**/*'
 #   'GPHybrid' => ['GPHybrid/Assets/*.png']
 # }
 
-# s.public_header_files = 'Pod/Classes/**/*.h'
-# s.frameworks = 'UIKit', 'MapKit'
-s.dependency 'Masonry'
-s.dependency 'AFNetworking'
-s.dependency 'GPNavigationController'
-s.dependency 'libextobjc'
-
 s.prefix_header_contents = '
 
 //屏幕适配
@@ -71,6 +64,12 @@ s.prefix_header_contents = '
 
 '
 
+s.public_header_files = 'Pod/Classes/**/*.h'
+# s.frameworks = 'UIKit', 'MapKit'
+s.dependency 'Masonry'
+s.dependency 'AFNetworking'
+s.dependency 'GPNavigationController'
+s.dependency 'libextobjc'
 
 end
 

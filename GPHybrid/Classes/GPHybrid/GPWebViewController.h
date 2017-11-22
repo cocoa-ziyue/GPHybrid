@@ -11,7 +11,7 @@
 #import <WebKit/WebKit.h>
 #import "GPBaseWebView.h"
 #import "GPBaseWKWebView.h"
-#import "GPHybrid.h"
+#import "GPBaseViewController.h"
 
 //提示状态机
 typedef enum GPWebOverlayStatus {
