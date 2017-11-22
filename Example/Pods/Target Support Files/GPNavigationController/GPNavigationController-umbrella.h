@@ -16,6 +16,7 @@
 #import "GPBaseViewController.h"
 #import "GPNavbarView.h"
 #import "GPPanGestureRecognizer.h"
+#import "GPTabViewController.h"
 #import "UIView+Snapshot.h"
 #import "GPTabBar.h"
 #import "GPTabBarButton.h"

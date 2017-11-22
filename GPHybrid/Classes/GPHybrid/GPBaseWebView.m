@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
 //@property (nonatomic, strong) NoDataView *errorView;
 //@property (nonatomic, strong) GPPageLoadView *pageLoadView;
+@property (nonatomic, strong) NSString *domainUrl;
 
 @end
 
@@ -38,6 +39,34 @@
     [self.uiWebView stopLoading];
     [self.uiWebView removeFromSuperview];
 }
+
+- (void)addCookieswithDict:(NSMutableDictionary *)cookiesDict {
+    //清除cookies
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];
+    for (id obj in _tmpArray) {
+        [cookieJar deleteCookie:obj];
+    }
+    self.domainUrl = [NSString stringWithFormat:@"%@",[cookiesDict valueForKey:@"Domain"]];
+    //遍历keys
+    for (NSString *keyStr in cookiesDict.allKeys) {
+        NSString *valueStr = [NSString stringWithFormat:@"%@",[cookiesDict valueForKey:keyStr]];
+        [self addCookieWithDict:@{keyStr:valueStr}];
+    }
+}
+
+- (void)addCookieWithDict:(NSDictionary *)dict {
+    NSMutableDictionary *cookiePropertiesLang = [NSMutableDictionary dictionary];
+    [cookiePropertiesLang setObject:dict.allKeys[0] forKey:NSHTTPCookieName];
+    [cookiePropertiesLang setObject:dict.allValues[0] forKey:NSHTTPCookieValue];
+    [cookiePropertiesLang setObject:@"/" forKey:NSHTTPCookiePath];
+    [cookiePropertiesLang setObject:self.domainUrl forKey:NSHTTPCookieDomain];
+    [cookiePropertiesLang setObject:@"0" forKey:NSHTTPCookieVersion];
+    [cookiePropertiesLang setObject:@"0" forKey:NSHTTPCookieDiscard];
+    NSHTTPCookie *cookieuser = [[NSHTTPCookie alloc]initWithProperties:cookiePropertiesLang];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
+}
+
 
 #pragma mark -
 #pragma mark Accessor methods

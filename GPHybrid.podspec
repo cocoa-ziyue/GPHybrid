@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GPHybrid'
-  s.version          = '0.1.2'
+  s.version          = '0.1.4'
   s.summary          = 'A short description of GPHybrid.'
 
 # This description is used to generate tags and improve search results.
@@ -35,6 +35,13 @@ TODO: Add long description of the pod here.
   # s.resource_bundles = {
   #   'GPHybrid' => ['GPHybrid/Assets/*.png']
   # }
+
+# s.public_header_files = 'Pod/Classes/**/*.h'
+# s.frameworks = 'UIKit', 'MapKit'
+    s.dependency 'Masonry'
+    s.dependency 'AFNetworking'
+    s.dependency 'GPNavigationController'
+    s.dependency 'libextobjc'
 
 s.prefix_header_contents = '
 
@@ -66,11 +73,5 @@ s.prefix_header_contents = '
 
 '
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-   s.dependency 'Masonry'
-   s.dependency 'AFNetworking'
-   s.dependency 'GPNavigationController'
-   s.dependency 'libextobjc'
 
 end

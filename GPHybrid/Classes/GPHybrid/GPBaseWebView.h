@@ -20,6 +20,8 @@
 @property (nonatomic, assign) BOOL showPageLoadView;         //是否开启加载动画
 @property (nonatomic, assign) BOOL isSpecail;               //是否开启替换
 
+- (void)addCookieswithDict:(NSMutableDictionary *)cookiesDict;
+
 @end
 
 @protocol GPWebViewDelegate <NSObject>

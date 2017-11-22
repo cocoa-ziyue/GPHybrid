@@ -3,12 +3,13 @@
 //  GPGaming
 //
 //  Created by yzx on 15/5/19.
-//  Copyright (c) 2015年 sgp. All rights reserved.
+//  Copyright (c) 2015年 weipei. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @class GPTabBar;
+@class GPTabBarButton;
 
 @protocol TabBarDelegate <NSObject>
 
@@ -22,6 +23,8 @@
  @param to 将要选择的按钮的Tag值
  */
 - (void)tabBar:(GPTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to;
+
+- (void)tabBar:(GPTabBar *)tabBar currentBtn:(GPTabBarButton *)button didSelectedButtonFrom:(int)from to:(int)to;
 
 @end
 

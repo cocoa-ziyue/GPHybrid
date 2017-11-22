@@ -13,7 +13,7 @@
 #import "GPBaseViewController.h"
 #import "GPNavbarView.h"
 #import "GPBaseNavigationController.h"
-
+#import "GPTabViewController.h"
 #import "GPTabBarButton.h"
 #import "GPTabBar.h"
 

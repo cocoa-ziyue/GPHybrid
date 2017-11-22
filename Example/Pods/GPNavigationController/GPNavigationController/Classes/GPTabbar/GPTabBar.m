@@ -3,7 +3,7 @@
 //  GPGaming
 //
 //  Created by yzx on 15/5/19.
-//  Copyright (c) 2015年 sgp. All rights reserved.
+//  Copyright (c) 2015年 weipei. All rights reserved.
 //
 
 #import "GPTabBar.h"
@@ -32,6 +32,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+    
     }
     return self;
 }
@@ -62,7 +63,9 @@
     if ([self.delegate respondsToSelector:@selector(tabBar:didSelectedButtonFrom:to:)]) {
         [self.delegate tabBar:self didSelectedButtonFrom:(short)self.selectedButton.tag to:(short)button.tag];
     }
-
+    if ([self.delegate respondsToSelector:@selector(tabBar:currentBtn:didSelectedButtonFrom:to:)]) {
+        [self.delegate tabBar:self currentBtn:button didSelectedButtonFrom:(short)self.selectedButton.tag to:(short)button.tag];
+    }
     // 2.设置按钮的状态
     self.selectedButton.selected = NO;
     button.selected = YES;
@@ -77,7 +80,7 @@
     }
 
     // 按钮的frame数据
-    CGFloat buttonH = self.frame.size.height;
+    CGFloat buttonH = 49;
     CGFloat buttonW = self.frame.size.width / self.subviews.count;
     CGFloat buttonY = 0;
 
@@ -96,7 +99,7 @@
 
     // 添加模糊效果
     UIToolbar *toobar = [[UIToolbar alloc] init];
-    toobar.barStyle = UIBarStyleDefault;
+    toobar.barStyle = UIBarStyleBlackTranslucent;
     toobar.translucent = YES;
     toobar.frame = self.bounds;
     [self insertSubview:toobar atIndex:0];

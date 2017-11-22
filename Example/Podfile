@@ -2,6 +2,5 @@ use_frameworks!
 
 target 'GPHybrid_Example' do
   pod 'GPHybrid', :path => '../'
-  pod 'GPNavigationController',:git=>'https://github.com/ziyue92/GPNavigationController.git'
-  pod 'Masonry'
+  
 end

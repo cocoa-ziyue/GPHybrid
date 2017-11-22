@@ -24,4 +24,10 @@ CGSizeZero;
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define AppWindow [UIApplication sharedApplication].keyWindow
 #define WINDOW [[[UIApplication sharedApplication] delegate] window]
-#define NavHeight 64
+
+#define isIPhoneXByHeight ([[UIScreen mainScreen] bounds].size.height == 812.f ? 1 :0 )//根据屏幕高度判断
+#define StatusHeight (isIPhoneXByHeight ? 44 : 20)//statusTabbar的高度，iPhone X的高度44
+#define NavHeight (isIPhoneXByHeight ? 88 : 64)//导航栏整体高度
+#define TopSafeAreaHeight (isIPhoneXByHeight ? 44 : 0)//顶部部安全距离高度
+#define BottomSafeAreaHeight (isIPhoneXByHeight ? 34 : 0)//底部安全距离高度
+#define TabbarHeight (isIPhoneXByHeight ? 83 : 49)//Tabbar的高度，iPhone X的高度83

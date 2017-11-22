@@ -3,15 +3,16 @@
 //  GPGaming
 //
 //  Created by shugangpeng on 16/12/23.
-//  Copyright © 2016年 sgp. All rights reserved.
+//  Copyright © 2016年 weipei. All rights reserved.
 //
 
 #import "GPBaseViewController.h"
 #import "Reachability.h"
 #import "GPNavtionBarDefines.h"
 
-@interface GPBaseViewController () <GPNavbarViewDelegate>
-
+@interface GPBaseViewController () <GPNavbarViewDelegate,UIAlertViewDelegate>
+@property (nonatomic, strong) UIAlertView *alertView;
+@property (nonatomic, assign) BOOL isShowed;
 @end
 
 
@@ -55,14 +56,18 @@
 
 - (void)reachabilityChanged:(NSNotification *)notification {
     Reachability *reach = [notification object];
-    if (![reach isReachable]) {
+    if (![reach isReachable] && !self.isShowed) {
+        [self.alertView show];
+        self.isShowed = YES;
 //        [UIView showBlackToastViewTilte:@"当前网络异常，请稍后重试！" duration:0.8];
     }
 }
 
 - (void)setNetWorkIsAvailable:(BOOL)netWorkIsAvailable {
     _netWorkIsAvailable = netWorkIsAvailable;
-    if (!netWorkIsAvailable) {
+    if (!netWorkIsAvailable && !self.isShowed) {
+        [self.alertView show];
+        self.isShowed = YES;
 //        [UIView showBlackToastViewTilte:@"当前网络异常，请稍后重试！"];
     }
 }
@@ -91,11 +96,25 @@
 
 #pragma mark -
 #pragma mark - GPNavbarViewDelegate
+
 - (void)p_topLeftBtnClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)p_topRightBtnClick {
+    
+}
+
+#pragma mark -
+#pragma mark - GPNavbarViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        self.isShowed = NO;
+        NSURL *url = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
 }
 
 #pragma mark -
@@ -107,6 +126,14 @@
         _topTitleView.delegate = self;
     }
     return _topTitleView;
+}
+
+- (UIAlertView *)alertView {
+    if (!_alertView) {
+        _alertView = [[UIAlertView alloc] initWithTitle:nil message:@"检测到当前网络失去连接,快去开启网络吧。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        _alertView.delegate = self;
+    }
+    return _alertView;
 }
 
 @end

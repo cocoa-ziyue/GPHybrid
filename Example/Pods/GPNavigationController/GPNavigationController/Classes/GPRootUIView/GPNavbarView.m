@@ -66,7 +66,7 @@
         [_baseLeftBtn setImage:img forState:UIControlStateNormal];
         size = img.size;
         size.width = size.width > 44 ? size.width : 44;
-        _baseLeftBtn.frame = CGRectMake(offset, 20, size.width, 44);
+        _baseLeftBtn.frame = CGRectMake(offset, StatusHeight, size.width, 44);
     }
 
     if ([detailDic valueForKey:Nav_LeftTxt]) {
@@ -76,7 +76,7 @@
         [_baseLeftBtn setTitleColor:GPColor(205, 218, 220) forState:UIControlStateNormal];
         _baseLeftBtn.titleLabel.font = font;
         size = LBL_TEXTSIZE([detailDic valueForKey:Nav_LeftTxt], font);
-        _baseLeftBtn.frame = CGRectMake(offset * 2, 20, size.width, 44);
+        _baseLeftBtn.frame = CGRectMake(offset * 2, StatusHeight, size.width, 44);
     }
 
     if ([detailDic valueForKey:Nav_RightImg]) {
@@ -86,7 +86,7 @@
         [_baseRightBtn setImage:img forState:UIControlStateNormal];
         size = img.size;
         size.width = size.width > 44 ? size.width : 44;
-        _baseRightBtn.frame = CGRectMake(SCREEN_WIDTH - offset - size.width, 20, size.width, 44);
+        _baseRightBtn.frame = CGRectMake(SCREEN_WIDTH - offset - size.width, StatusHeight, size.width, 44);
     }
 
     if ([detailDic valueForKey:Nav_Right]) {
@@ -96,11 +96,11 @@
         [_baseRightBtn setTitleColor:GPColor(205, 218, 220) forState:UIControlStateNormal];
         _baseRightBtn.titleLabel.font = font;
         size = LBL_TEXTSIZE([detailDic valueForKey:Nav_Right], font);
-        _baseRightBtn.frame = CGRectMake(SCREEN_WIDTH - 2 * offset - size.width, 20, size.width, 44);
+        _baseRightBtn.frame = CGRectMake(SCREEN_WIDTH - 2 * offset - size.width, StatusHeight, size.width, 44);
     }
 
     CGFloat maxX = _baseRightBtn.frame.size.width > 0 ? MAX(_baseLeftBtn.frame.size.width, _baseRightBtn.frame.size.width) : _baseLeftBtn.frame.size.width;
-    _baseTitleLbl.frame = CGRectMake(maxX + offset, 20, SCREEN_WIDTH - 2 * (maxX + offset), 44);
+    _baseTitleLbl.frame = CGRectMake(maxX + offset, StatusHeight, SCREEN_WIDTH - 2 * (maxX + offset), 44);
 }
 
 #pragma mark -
