@@ -11,7 +11,6 @@
 #import <WebKit/WebKit.h>
 #import "GPBaseWebView.h"
 #import "GPBaseWKWebView.h"
-#import "GPBaseViewController.h"
 
 //提示状态机
 typedef enum GPWebOverlayStatus {
@@ -22,7 +21,7 @@ typedef enum GPWebOverlayStatus {
 } GPWebOverlayStatus;
 
 
-@interface GPWebViewController : GPBaseViewController
+@interface GPWebViewController : UIViewController
 
 @property (nonatomic, strong) GPBaseWebView *uiWebView;   //uiwebview视图
 @property (nonatomic, strong) GPBaseWKWebView *wkWebView; //wkwebview视图

@@ -31,10 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self propertyInit];
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:self.titleName forKey:Nav_Title];
-    [params setValue:@"navgation_back_btn" forKey:Nav_Left];
-    [self p_setTopTitleDetail:params];
 }
 
 - (void)propertyInit {
