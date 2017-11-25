@@ -55,7 +55,7 @@
  异步获取网页URl
  
  @param webView webView
- @param title title
+ @param url url
  */
 - (void)wkWebView:(GPBaseWKWebView *)webView getWebViewUrl:(NSString *)url;
 /**
