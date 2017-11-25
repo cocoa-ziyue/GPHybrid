@@ -9,9 +9,6 @@
 #import "GPTabBar.h"
 #import "GPTabBarButton.h"
 
-#define GPColor(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
-
-
 @interface GPTabBar ()
 
 /**
@@ -32,7 +29,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-    
+        self.tabColor ? (self.backgroundColor = self.tabColor):(self.backgroundColor = [UIColor whiteColor]);
     }
     return self;
 }
@@ -40,6 +37,8 @@
 - (void)addTabBarButtonWithItem:(UITabBarItem *)item {
     // 1.创建按钮
     GPTabBarButton *button = [[GPTabBarButton alloc] init];
+    button.textSelectColor = self.textSelectedColor;
+    button.textNormalColor = self.textNormalColor;
     [self addSubview:button];
 
     // 2.设置数据
@@ -99,7 +98,7 @@
 
     // 添加模糊效果
     UIToolbar *toobar = [[UIToolbar alloc] init];
-    toobar.barStyle = UIBarStyleBlackTranslucent;
+    toobar.barStyle = UIBarStyleDefault;
     toobar.translucent = YES;
     toobar.frame = self.bounds;
     [self insertSubview:toobar atIndex:0];

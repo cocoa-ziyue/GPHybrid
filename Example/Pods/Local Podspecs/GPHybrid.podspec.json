@@ -1,7 +1,7 @@
 {
   "name": "GPHybrid",
-  "version": "0.1.7",
-  "summary": "A short description of GPHybrid.",
+  "version": "0.1.8",
+  "summary": "web-native混合开发框架，基于UIWebView和WKWebView",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/ziyue92/GPHybrid",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/ziyue92/GPHybrid.git",
-    "tag": "0.1.7"
+    "tag": "0.1.8"
   },
   "platforms": {
     "ios": "8.0"

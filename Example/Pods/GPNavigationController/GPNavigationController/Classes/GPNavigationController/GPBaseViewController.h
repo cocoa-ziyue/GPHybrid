@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GPBaseNavigationController.h"
 #import "GPNavbarView.h"
+#import "GPNavtionBarDefines.h"
 
 @interface GPBaseViewController : UIViewController
 

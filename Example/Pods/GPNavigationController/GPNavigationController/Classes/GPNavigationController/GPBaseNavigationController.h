@@ -13,7 +13,7 @@
 
 @property (readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer; //侧滑手势
 @property (nonatomic, assign) BOOL isEnableScroll;                            //是否允许侧滑
-@property (nonatomic, assign) BOOL isNeedBluer;         //是否需要高斯模糊
+
 
 /**
  获取上一个控制器
