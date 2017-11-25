@@ -19,6 +19,7 @@
 @property (nonatomic, strong) WebViewJavascriptBridge *bridge; //js交互桥接
 @property (nonatomic, assign) BOOL showPageLoadView;         //是否开启加载动画
 @property (nonatomic, assign) BOOL isSpecail;               //是否开启替换
+@property (nonatomic, assign) BOOL openNewViewController;
 
 - (void)addCookieswithDict:(NSMutableDictionary *)cookiesDict;
 

@@ -306,6 +306,7 @@
         _uiWebView = [[GPBaseWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH,SCREEN_HEIGHT - NavHeight - BottomSafeAreaHeight)];
         _uiWebView.backgroundColor = [UIColor whiteColor];
         _uiWebView.delegate = self;
+        _uiWebView.openNewViewController = self.openNewViewController;
     }
     return _uiWebView;
 }
