@@ -195,7 +195,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(webView:cunrrentUrl:)]) {
         [self.delegate webView:self cunrrentUrl:currentUrl];
     }
-    if(!self.openNewViewController || [currentUrl isEqualToString:_request.URL.absoluteString]) {  //主页面加载内容
+    if(!self.openNewViewController || [currentUrl isEqualToString:_request.URL.absoluteString] || ![currentUrl containsString:@"bilibili"]) {  //主页面加载内容
          return YES;   //允许跳转
     } else {
         return NO;     //不允许跳转
