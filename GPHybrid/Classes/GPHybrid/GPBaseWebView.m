@@ -151,7 +151,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     //需要替换,则开启替换
     if (self.isSpecail) {
-        NSString *topstr = @"document.getElementsByClassName('tophead cl')[0].remove();";
+        NSString *topstr = @"document.getElementsByClassName('tophead')[0].remove();";
         [webView stringByEvaluatingJavaScriptFromString:topstr];
         NSString *sharestr = @"document.getElementById('soshm').remove();";
         [webView stringByEvaluatingJavaScriptFromString:sharestr];
@@ -161,6 +161,8 @@
         [webView stringByEvaluatingJavaScriptFromString:footerstr];
         NSString *khdbox = @"document.getElementsByClassName('khdbox')[0].remove();";
         [webView stringByEvaluatingJavaScriptFromString:khdbox];
+        NSString *newsbox = @"document.getElementsByClassName('newsbox')[0].remove();";
+        [webView stringByEvaluatingJavaScriptFromString:newsbox];
     }
     if(self.showPageLoadView){
 //        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
