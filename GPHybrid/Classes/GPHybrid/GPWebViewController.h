@@ -54,10 +54,6 @@ typedef enum GPWebOverlayStatus {
 
 @property (nonatomic, assign) GPWebOverlayStatus status;       //网页加载状态
 
-@property (nonatomic, strong) NSString *emIcon;               //自定义图片
-@property (nonatomic, assign) CGFloat emTitleFont;            //字体大小
-@property (nonatomic, assign) NSInteger emTitleBack;          //字体颜色
-
 @property (nonatomic, strong) NSURLRequest *webUrlRequest;      //基础请求地址
 
 /**

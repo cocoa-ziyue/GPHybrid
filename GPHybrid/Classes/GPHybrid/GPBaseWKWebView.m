@@ -10,6 +10,7 @@
 #import "NJKWebViewProgress.h"
 #import "NSString+Hybridmd5.h"
 #import <AFNetworking/AFImageDownloader.h>
+#import "GPHybridPageLoadView.h"
 
 @interface GPBaseWKWebView () <WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate>
 
@@ -17,7 +18,7 @@
 @property (nonatomic, strong) NSString *h5orignContent;
 @property (nonatomic, strong) NSString *documentPath;
 //@property (nonatomic, strong) NoDataView *errorView;
-//@property (nonatomic, strong) GPPageLoadView *pageLoadView;
+@property (nonatomic, strong) GPHybridPageLoadView *pageLoadView;
 @property (nonatomic, assign) BOOL loadSuccess;
 
 @end
@@ -69,6 +70,9 @@
     if ([self.delegate respondsToSelector:@selector(wkWebView:loadingStatus:)]) {
         [self.delegate wkWebView:self loadingStatus:@"0"];
     }
+    if (self.showPageLoadView) {
+        self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
+    }
 }
 
 // 当内容开始返回时调用
@@ -83,8 +87,8 @@
     if ([self.delegate respondsToSelector:@selector(wkWebView:loadingStatus:)]) {
         [self.delegate wkWebView:self loadingStatus:@"1"];
     }
-    if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
+    if (self.showPageLoadView) {
+        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
     }
 }
 
@@ -94,10 +98,8 @@
     if ([self.delegate respondsToSelector:@selector(wkWebView:loadingStatus:)]) {
         [self.delegate wkWebView:self loadingStatus:@"-1"];
     }
-    if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
-//        [self addSubview:self.errorView];
-//        self.errorView.hidden = NO;
+    if (self.showPageLoadView) {
+        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
     }
 }
 
@@ -277,21 +279,14 @@
 
 #pragma mark -
 #pragma mark Accesstor methods
-////转圈判定
-//- (void)setShowPageLoadView:(BOOL)showPageLoadView {
-//    _showPageLoadView = showPageLoadView;
-//    if (showPageLoadView) {
-//        self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
-//    }
-//}
 
 //转圈
-//- (GPPageLoadView *)pageLoadView {
-//    if (!_pageLoadView) {
-//        _pageLoadView = [[GPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
-//    }
-//    return _pageLoadView;
-//}
+- (GPHybridPageLoadView *)pageLoadView {
+    if (!_pageLoadView) {
+        _pageLoadView = [[GPHybridPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+    }
+    return _pageLoadView;
+}
 
 //获取h5源码
 - (NSString *)h5orignContent {

@@ -17,8 +17,7 @@
 @property (nonatomic, strong) NJKWebViewProgressView *progressView; //进度条
 @property (nonatomic, strong) UIProgressView *wkProgressView;       //进度条
 @property (nonatomic, strong) UILabel *hostDeslbl;                 //host名称
-@property (assign, nonatomic) BOOL showPageLoadView;              //是否开启转圈
-@property (nonatomic, strong) GPHybridPageLoadView *pageLoadView;     //转圈
+@property (nonatomic, assign) BOOL showPageLoadView;              //是否开启转圈
 @property (nonatomic, strong, readwrite) NSString *currentUrl;   //当前请求地址
 
 @end
@@ -82,7 +81,6 @@
             [self.view addSubview:self.wkWebView];
         }
     }
-    self.status = GPWebOverlayStatusLoading;
 }
 
 - (void)rediRectWebViewWithUrlStr:(NSString *)webUrlStr {
@@ -106,7 +104,6 @@
             [self.view addSubview:self.wkWebView];
         }
     }
-    self.status = GPWebOverlayStatusLoading;
 }
 
 - (void)loadWebViewWithUrlRequest:(NSMutableURLRequest *)urlRequest {
@@ -121,51 +118,6 @@
         if (!self.wkWebView.superview) {
             [self.view addSubview:self.wkWebView];
         }
-    }
-    self.status = GPWebOverlayStatusLoading;
-}
-
-- (void)setStatus:(GPWebOverlayStatus )status {
-    _status = status;
-    switch (status) {
-        case GPWebOverlayStatusLoading:
-        {
-            if (self.showPageLoadView) {       //开启转圈
-                self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
-            }
-        }
-            break;
-        case GPWebOverlayStatusSuccess:
-        {
-            if (self.showPageLoadView) {       //结束转圈
-                self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
-            }
-            if (self.showHostURl) {
-                [self setUrlDescpritionShow:self.showHostURl];
-            } else {
-#if defined(CONFIGURATION_Develop) || defined(DEBUG) //内测、debug阶段
-                [self setUrlDescpritionShow:YES];
-                self.hostDeslbl.hidden = NO;
-#endif
-            }
-        }
-            break;
-        case GPWebOverlayStatusError:
-        {
-            if (self.showPageLoadView) {       //结束转圈
-                self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
-            }
-        }
-            break;
-        case GPWebOverlayStatusReload:
-        {
-            if (self.showPageLoadView) {       //开启转圈
-                self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
-            }
-        }
-            break;
-        default:
-            break;
     }
 }
 
@@ -203,7 +155,7 @@
 
 - (void)webView:(GPBaseWebView *)webView loadingStatus:(NSString *)status {
     if ([status isEqualToString:@"0"]) {
-
+        self.status = GPWebOverlayStatusLoading;
     } else if ([status isEqualToString:@"1"]) {
         self.status = GPWebOverlayStatusSuccess;
     } else if ([status isEqualToString:@"-1"]) {
@@ -246,7 +198,7 @@
 
 - (void)wkWebView:(GPBaseWKWebView *)webView loadingStatus:(NSString *)status {
     if ([status isEqualToString:@"0"]) {
-      
+        self.status = GPWebOverlayStatusLoading;
     } else if ([status isEqualToString:@"1"]) {
         self.status = GPWebOverlayStatusSuccess;
     } else if ([status isEqualToString:@"-1"]) {
@@ -276,36 +228,12 @@
     [_wkWebView cacheImgResources:imgs];
 }
 
-#pragma mark -
-#pragma mark DZNEmptyDataSetDelegate methods
-
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    if (self.status == GPWebOverlayStatusError) {
-        if (!self.emIcon || [self.emIcon isEqualToString:@""]) {
-            self.emIcon = [self getbundlePathWithImgName:@"GPcommon_nonet_icon"];
-        }
-    } else {
-        return nil;
-    }
-    return [UIImage imageNamed:self.emIcon];
-}
-
-
-#pragma mark -
-#pragma mark Accesstor methods
-
-- (GPHybridPageLoadView *)pageLoadView {
-    if (!_pageLoadView) {
-        _pageLoadView = [[GPHybridPageLoadView alloc]initInSuperView:self.baseWebViewOwner withframeY:0 updateCiclerViewY:(self.baseWebViewOwner.frame.size.height - SCREEN_HEIGHT)/2];
-    }
-    return _pageLoadView;
-}
-
 - (GPBaseWebView *)uiWebView {
     if (!_uiWebView) {
         _uiWebView = [[GPBaseWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH,SCREEN_HEIGHT - NavHeight - BottomSafeAreaHeight)];
         _uiWebView.backgroundColor = [UIColor whiteColor];
         _uiWebView.delegate = self;
+        _uiWebView.showPageLoadView = self.showPageLoadView;
         _uiWebView.openNewViewController = self.openNewViewController;
     }
     return _uiWebView;
@@ -316,6 +244,7 @@
         _wkWebView = [[GPBaseWKWebView alloc] initWithFrame:CGRectMake(0, NavHeight, SCREEN_WIDTH, SCREEN_HEIGHT- NavHeight - BottomSafeAreaHeight)];
         _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.delegate = self;
+        _wkWebView.showPageLoadView = self.showPageLoadView;
         _wkWebView.openNewViewController = self.openNewViewController;
     }
     return _wkWebView;
