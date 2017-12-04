@@ -72,7 +72,7 @@ self.cookies = @{@"Token":@"xxxxxxx",@"Lang":@"en_us",@"Domain":doMainstring,@"s
 [self.wkWebView.wkWebView evaluateJavaScript:javascript completionHandler:^(id _Nullable result, NSError * _Nullable error) {
        CGFloat webHeight = [result floatValue];
        self.commentTableView.emheaderHeight = webHeight;
-       self updatewebViewHeight:webHeight];
+       [self updatewebViewHeight:webHeight];
 }];   
 ```
 
