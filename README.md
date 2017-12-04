@@ -16,12 +16,64 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ![GPHybrid使用介绍](https://github.com/ziyue92/folder/raw/master/GPHybrid使用指南.png)
 
 ### 常见功能详解
-#### 1.加入cookie
+#### 1.使用vc加载h5网页，只需继承GPWebViewController，调用如下方法，一句代码就完成了网页加载。
 ```objective-c
-    //设置cookies
-    NSString *doMainstring = @".baidu.com";
-    self.cookies = @{@"Token":@"xxxxxxx",@"Lang":@"en_us",@"Domain":doMainstring,@"source":@"ios"};
-    [self.uiWebView addCookieswithDict:self.cookies.mutableCopy];
+//1.1 简单url(NSString)
+[self loadWebViewWithUrlStr:@"https://www.baidu.com"];
+//1.2 简单request(NSMutableURLRequest)
+NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+[self loadWebViewWithUrlRequest:request];
+//1.3 简单request(NSMutableURLRequest带header，或body)
+NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+[request addValue:@"en_us" forHTTPHeaderField:@"lang"];
+[self loadWebViewWithUrlRequest:request];
+```
+#### 2.异步获取标题
+```objective-c
+@weakify(self);
+self.getWebVTitle = ^(NSString *title) {
+     @strongify(self);
+     [self p_setTopTitleDetail:@{Nav_Title:title}.mutableCopy];
+};
+```
+#### 3.异步实时获取当前请求的url
+```objective-c
+@weakify(self);
+self.getWebVUrl = ^(NSString *url) {
+     @strongify(self);
+     do sth...
+};
+```
+#### 4.刷新
+```objective-c
+[self refresh];
+```
+#### 5.返回上一级（自动判断是退出vc，还是回退网页）
+```objective-c
+[self goBack];
+```
+#### 6.设置cookie
+```objective-c
+//设置cookies
+NSString *doMainstring = @".baidu.com";
+self.cookies = @{@"Token":@"xxxxxxx",@"Lang":@"en_us",@"Domain":doMainstring,@"source":@"ios"};
+[self.uiWebView addCookieswithDict:self.cookies.mutableCopy];
+```
+#### 7.JS与OC交互
+```objective-c
+//7.1 JS调用OC，OC注册JS事件，OC响应数据。
+[self.bridge registerHandler:@"findAllmgs" handler:^(id data, WVJBResponseCallback responseCallback) {
+        if ([data isKindOfClass:[NSArray class]]) {
+            @strongify(self);
+            self.imgArr = (NSArray *)data;
+        }
+}];
+//7.2 OC调用JS，OC执行JS事件，JS响应数据。
+[self.wkWebView.wkWebView evaluateJavaScript:javascript completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+       CGFloat webHeight = [result floatValue];
+       self.commentTableView.emheaderHeight = webHeight;
+       self updatewebViewHeight:webHeight];
+}];   
 ```
 
 ## Requirements
