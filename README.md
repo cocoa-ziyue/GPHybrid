@@ -9,13 +9,15 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 ## Introduction
+
+### 前言
 ```text
 Hybrid框架主要以JS+Native两者相互调用为主，从开发层面实现“一次开发，多处运行”的机制，成为真正适合跨平台的开发。  
 目前已经有众多Hybrid App开发成功应用，比如百度、网易等知名移动应用，都是采用Hybrid App开发模式。  
 因此GPHybird实现了JS+Native无缝调用、常见网页处理功能、常见客户端处理功能。实现UIWebview和WKWebView跟据操作系统自动适应。  
 在iOS8+设置上,使用WKWebView并封装了常见的功能接口，使用起来简单稳定。
-
 ```
+
 ### 架构思维导图
 ![GPHybrid模块组成介绍](https://github.com/ziyue92/folder/raw/master/GPHybird模块介绍.png)
 
