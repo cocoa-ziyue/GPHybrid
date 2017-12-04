@@ -93,7 +93,7 @@ self.isforceUseoldWebView = YES;
 
 ## Mark
 
-iOS开发交流群：674228487
+iOS开发交流群：674228487  
 欢迎关注我的博客：[Coder大鹏](http://blog.csdn.net/u010670946) 
 
 ## Requirements
