@@ -11,9 +11,18 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Introduction
 ### 架构思维导图
 ![GPHybrid模块组成介绍](https://github.com/ziyue92/folder/raw/master/GPHybird模块介绍.png)
+
 ### 使用介绍思维导图
 ![GPHybrid使用介绍](https://github.com/ziyue92/folder/raw/master/GPHybrid使用指南.png)
+
 ### 常见功能详解
+#### 1.加入cookie
+```objective-c
+    //设置cookies
+    NSString *doMainstring = @".baidu.com";
+    self.cookies = @{@"Token":@"xxxxxxx",@"Lang":@"en_us",@"Domain":doMainstring,@"source":@"ios"};
+    [self.uiWebView addCookieswithDict:self.cookies.mutableCopy];
+```
 
 ## Requirements
 iOS7+
