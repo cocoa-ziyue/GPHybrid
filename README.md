@@ -10,7 +10,7 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 ## Introduction
 ### 架构思维导图
-http://github.com/ziyue92/folder/raw/master/GPHybird模块介绍.png
+![GPHybrid模块组成介绍](http://github.com/ziyue92/folder/raw/master/GPHybird模块介绍.png)
 
 ## Requirements
 iOS7+
