@@ -8,8 +8,12 @@
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Introduction
+### 架构思维导图
+
 
 ## Requirements
+iOS7+
 
 ## Installation
 
