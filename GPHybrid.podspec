@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'GPHybrid'
-s.version          = '0.1.8'
+s.version          = '0.1.9'
 s.summary          = 'web-native混合开发框架，基于UIWebView和WKWebView'
 
 # This description is used to generate tags and improve search results.
