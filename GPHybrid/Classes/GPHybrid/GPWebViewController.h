@@ -47,7 +47,7 @@ typedef enum GPWebOverlayStatus {
 
 @property (assign, nonatomic) BOOL isSpecial;   //是否开启替换(目前只支持uiWebView)
 
-@property (assign, nonatomic) BOOL openNewViewController; //是否开启网页里跳转原生(目前只支持wkWebView)
+@property (assign, nonatomic) BOOL openNewViewController; //是否开启网页里跳转原生
 
 @property (nonatomic, strong) WebViewJavascriptBridge *bridge; //js交互桥接
 

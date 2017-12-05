@@ -8,11 +8,9 @@
 
 #import "GPBaseViewController.h"
 #import "Reachability.h"
-#import "GPNavtionBarDefines.h"
 
-@interface GPBaseViewController () <GPNavbarViewDelegate,UIAlertViewDelegate>
-@property (nonatomic, strong) UIAlertView *alertView;
-@property (nonatomic, assign) BOOL isShowed;
+@interface GPBaseViewController () <GPNavbarViewDelegate>
+
 @end
 
 
@@ -25,6 +23,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    //默认设置返回按钮
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:@"navgation_back_btn" forKey:Nav_Left];
+    [self p_setTopTitleDetail:params];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -44,6 +46,7 @@
 
 - (void)viewWillDisAppear:(BOOL)animated {
     [self viewWillDisAppear:animated];
+    [self p_openPanBackThisVcInApp:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,19 +59,19 @@
 
 - (void)reachabilityChanged:(NSNotification *)notification {
     Reachability *reach = [notification object];
-    if (![reach isReachable] && !self.isShowed) {
-        [self.alertView show];
-        self.isShowed = YES;
-//        [UIView showBlackToastViewTilte:@"当前网络异常，请稍后重试！" duration:0.8];
+    if (![reach isReachable]) {
+//        [UIView showBlackToastViewTilte:GPLocalizedStringFromModule(@"当前网络异常，请稍后重试！", kGPCommonLocalized) duration:0.8];
+//        [Defaults setBool:NO forKey:NETWORK_STATUES];
+    } else {
+//        [Defaults setBool:YES forKey:NETWORK_STATUES];
     }
+//    [Defaults synchronize];
 }
 
 - (void)setNetWorkIsAvailable:(BOOL)netWorkIsAvailable {
     _netWorkIsAvailable = netWorkIsAvailable;
-    if (!netWorkIsAvailable && !self.isShowed) {
-        [self.alertView show];
-        self.isShowed = YES;
-//        [UIView showBlackToastViewTilte:@"当前网络异常，请稍后重试！"];
+    if (!netWorkIsAvailable) {
+//        [UIView showBlackToastViewTilte:GPLocalizedStringFromModule(@"当前网络异常，请稍后重试！", kGPCommonLocalized) duration:0.8];
     }
 }
 
@@ -93,28 +96,13 @@
     navVc.isEnableScroll = flag;
 }
 
-
 #pragma mark -
 #pragma mark - GPNavbarViewDelegate
-
 - (void)p_topLeftBtnClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)p_topRightBtnClick {
-    
-}
-
-#pragma mark -
-#pragma mark - GPNavbarViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        self.isShowed = NO;
-        NSURL *url = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
-        }
-    }
 }
 
 #pragma mark -
@@ -126,14 +114,6 @@
         _topTitleView.delegate = self;
     }
     return _topTitleView;
-}
-
-- (UIAlertView *)alertView {
-    if (!_alertView) {
-        _alertView = [[UIAlertView alloc] initWithTitle:nil message:@"检测到当前网络失去连接,快去开启网络吧。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        _alertView.delegate = self;
-    }
-    return _alertView;
 }
 
 @end

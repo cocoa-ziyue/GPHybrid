@@ -2,15 +2,13 @@
 //  TabBarButton.m
 //  GPGaming
 //
-//  Created by yzx on 15/5/19.
-//  Copyright (c) 2015年 weipei. All rights reserved.
+//  Created by sgp on 15/5/19.
+//  Copyright (c) 2015年 sgp. All rights reserved.
 //
 
 #import "GPTabBarButton.h"
+
 #define IWTabBarButtonImageRatio 0.6
-
-#define GPColor(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
-
 
 @implementation GPTabBarButton
 
@@ -23,15 +21,23 @@
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         // 字体大小
         self.titleLabel.font = [UIFont systemFontOfSize:11];
-        // 文字颜色
-        [self setTitleColor:GPColor(85, 103, 115) forState:UIControlStateNormal];
-        [self setTitleColor:GPColor(199,61,31) forState:UIControlStateSelected];
     }
     return self;
 }
 
 // 重写去掉高亮状态
 - (void)setHighlighted:(BOOL)highlighted {
+    
+}
+
+- (void)setTextNormalColor:(UIColor *)textNormalColor {
+    // normal文字颜色
+    [self setTitleColor:textNormalColor forState:UIControlStateNormal];
+}
+
+- (void)setTextSelectColor:(UIColor *)textSelectColor {
+    // select文字颜色
+    [self setTitleColor:textSelectColor forState:UIControlStateSelected];
 }
 
 // 内部图片的frame
@@ -52,13 +58,11 @@
 // 设置item
 - (void)setItem:(UITabBarItem *)item {
     _item = item;
-
     // KVO 监听属性改变
     [item addObserver:self forKeyPath:@"badgeValue" options:0 context:nil];
     [item addObserver:self forKeyPath:@"title" options:0 context:nil];
     [item addObserver:self forKeyPath:@"image" options:0 context:nil];
     [item addObserver:self forKeyPath:@"selectedImage" options:0 context:nil];
-
     [self observeValueForKeyPath:nil ofObject:nil change:nil context:nil];
 }
 

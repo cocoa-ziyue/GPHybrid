@@ -7,13 +7,31 @@
 //
 
 #import "GPAppDelegate.h"
+#import "GPViewController.h"
 
 @implementation GPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    self.window.rootViewController =  [[UINavigationController alloc] initWithRootViewController:[GPViewController new]];
+    [self.window makeKeyAndVisible];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    //定义导航条的颜色
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:44.0/255.0 green:45.0/255 blue:40.0/255 alpha:1.0]];
+    //定义导航条上文字的颜色
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    //设置导航的标题的颜色
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+    
     return YES;
+}
+
++ (GPAppDelegate *)getAppDelegate {
+    return (GPAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

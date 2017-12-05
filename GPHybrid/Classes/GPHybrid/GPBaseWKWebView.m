@@ -8,6 +8,7 @@
 
 #import "GPBaseWKWebView.h"
 #import "NJKWebViewProgress.h"
+#import "GPHybridPageLoadView.h"
 #import "NSString+Hybridmd5.h"
 #import <AFNetworking/AFImageDownloader.h>
 
@@ -17,7 +18,7 @@
 @property (nonatomic, strong) NSString *h5orignContent;
 @property (nonatomic, strong) NSString *documentPath;
 //@property (nonatomic, strong) NoDataView *errorView;
-//@property (nonatomic, strong) GPPageLoadView *pageLoadView;
+@property (nonatomic, strong) GPHybridPageLoadView *pageLoadView;
 @property (nonatomic, assign) BOOL loadSuccess;
 
 @end
@@ -34,9 +35,9 @@
     }
     return self;
 }
-    
+
 #pragma mark - loadRequest methods
-    
+
 - (void)setRequest:(NSMutableURLRequest *)request {
     _request = request;
     NSString *app_versions = [NSString stringWithFormat:@"ios%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
@@ -58,6 +59,10 @@
         [self.wkWebView loadRequest:_request];
     }
     NSLog(@"WKWebView: web url is %@", _request.URL.absoluteString);
+    
+    if (self.showPageLoadView) {
+        self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
+    }
 }
 
 
@@ -84,7 +89,7 @@
         [self.delegate wkWebView:self loadingStatus:@"1"];
     }
     if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
+        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
     }
 }
 
@@ -95,9 +100,7 @@
         [self.delegate wkWebView:self loadingStatus:@"-1"];
     }
     if(self.showPageLoadView){
-//        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
-//        [self addSubview:self.errorView];
-//        self.errorView.hidden = NO;
+        self.pageLoadView.loadStatus = GPPageLoadViewStatusEnd;
     }
 }
 
@@ -155,12 +158,12 @@
 }
 
 - (void)refreshAction:(UITapGestureRecognizer *)recognizer {
-//    self.errorView.hidden = YES;
-//    self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
-//    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-//    dispatch_after(timer, dispatch_get_main_queue(), ^{
-//            [self setRequest:_request];
-//    });
+    //    self.errorView.hidden = YES;
+    //    self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
+    //    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    //    dispatch_after(timer, dispatch_get_main_queue(), ^{
+    //            [self setRequest:_request];
+    //    });
 }
 
 - (void)cacheH5Code {
@@ -277,21 +280,14 @@
 
 #pragma mark -
 #pragma mark Accesstor methods
-////转圈判定
-//- (void)setShowPageLoadView:(BOOL)showPageLoadView {
-//    _showPageLoadView = showPageLoadView;
-//    if (showPageLoadView) {
-//        self.pageLoadView.loadStatus = GPPageLoadViewStatusActive;
-//    }
-//}
 
 //转圈
-//- (GPPageLoadView *)pageLoadView {
-//    if (!_pageLoadView) {
-//        _pageLoadView = [[GPPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
-//    }
-//    return _pageLoadView;
-//}
+- (GPHybridPageLoadView *)pageLoadView {
+    if (!_pageLoadView) {
+        _pageLoadView = [[GPHybridPageLoadView alloc]initInSuperView:self withframeY:0 updateCiclerViewY:(self.frame.size.height - SCREEN_HEIGHT)/2];
+    }
+    return _pageLoadView;
+}
 
 //获取h5源码
 - (NSString *)h5orignContent {

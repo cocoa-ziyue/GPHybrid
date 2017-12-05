@@ -23,7 +23,7 @@
 		715CF327C99D835A85A91A17 /* Pods_GPHybrid_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0184A3450C2708397D37DC80 /* Pods_GPHybrid_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		751F4478D408CE9AB2E838FE /* Pods_GPHybrid_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF78F6A7BA468D9FF2350CD /* Pods_GPHybrid_Example.framework */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		EE7AC4C61FD686F400800A03 /* GPDemoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC4C51FD686F400800A03 /* GPDemoWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,11 +61,12 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B6F160280F334CB99414FC3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A535851D0127C9963263F61E /* Pods-GPHybrid_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPHybrid_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPHybrid_Example/Pods-GPHybrid_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D4714952630A112D16C9869B /* Pods-GPHybrid_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPHybrid_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPHybrid_Example/Pods-GPHybrid_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DBE28069D92C8332DA61EDC9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		EBF78F6A7BA468D9FF2350CD /* Pods_GPHybrid_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPHybrid_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE7AC4C41FD686F400800A03 /* GPDemoWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDemoWebViewController.h; sourceTree = "<group>"; };
+		EE7AC4C51FD686F400800A03 /* GPDemoWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDemoWebViewController.m; sourceTree = "<group>"; };
 		F8C1FC15E8031EBC9279E9C1 /* GPHybrid.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GPHybrid.podspec; path = ../GPHybrid.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,9 +133,10 @@
 		6003F593195388D20070C39A /* Example for GPHybrid */ = {
 			isa = PBXGroup;
 			children = (
+				EE7AC4C41FD686F400800A03 /* GPDemoWebViewController.h */,
+				EE7AC4C51FD686F400800A03 /* GPDemoWebViewController.m */,
 				6003F59C195388D20070C39A /* GPAppDelegate.h */,
 				6003F59D195388D20070C39A /* GPAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* GPViewController.h */,
 				6003F5A6195388D20070C39A /* GPViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
@@ -251,7 +253,7 @@
 				ORGANIZATIONNAME = ziyue92;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = NG47NYQZ99;
+						DevelopmentTeam = 7557G9XX9T;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -282,7 +284,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -417,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* GPAppDelegate.m in Sources */,
+				EE7AC4C61FD686F400800A03 /* GPDemoWebViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* GPViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -546,13 +548,14 @@
 			baseConfigurationReference = A535851D0127C9963263F61E /* Pods-GPHybrid_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NG47NYQZ99;
+				DEVELOPMENT_TEAM = 7557G9XX9T;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GPHybrid/GPHybrid-Prefix.pch";
 				INFOPLIST_FILE = "GPHybrid/GPHybrid-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -562,13 +565,14 @@
 			baseConfigurationReference = D4714952630A112D16C9869B /* Pods-GPHybrid_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NG47NYQZ99;
+				DEVELOPMENT_TEAM = 7557G9XX9T;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GPHybrid/GPHybrid-Prefix.pch";
 				INFOPLIST_FILE = "GPHybrid/GPHybrid-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

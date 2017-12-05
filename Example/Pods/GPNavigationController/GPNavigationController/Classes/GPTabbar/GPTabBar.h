@@ -16,20 +16,27 @@
 @optional
 
 /**
- GPTabBar代理
-
  @param tabBar GPTabBar
  @param from 上一个选择的按钮的Tag值
  @param to 将要选择的按钮的Tag值
  */
 - (void)tabBar:(GPTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to;
 
+/**
+ @param tabBar GPTabBar
+ @param from 上一个选择的按钮的Tag值
+ @param to 将要选择的按钮的Tag值
+ */
 - (void)tabBar:(GPTabBar *)tabBar currentBtn:(GPTabBarButton *)button didSelectedButtonFrom:(int)from to:(int)to;
 
 @end
 
 
 @interface GPTabBar : UIView
+
+@property (nonatomic, strong) UIColor *tabColor;
+@property (nonatomic, strong) UIColor *textNormalColor;
+@property (nonatomic, strong) UIColor *textSelectedColor;
 
 @property (nonatomic, weak) id<TabBarDelegate> delegate;
 
