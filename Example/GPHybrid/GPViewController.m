@@ -75,18 +75,21 @@
     [self.view addSubview:btn5];
     [self.view addSubview:btn6];
     
-    btn1.center = CGPointMake(self.view.center.x,self.view.center.y - 100);
-    btn2.center = CGPointMake(self.view.center.x,self.view.center.y - 50);
-    btn3.center = CGPointMake(self.view.center.x,self.view.center.y);
-    btn4.center = CGPointMake(self.view.center.x,self.view.center.y + 50);
-    btn5.center = CGPointMake(self.view.center.x,self.view.center.y + 100);
-    btn6.center = CGPointMake(self.view.center.x,self.view.center.y + 150);
+    btn1.center = CGPointMake(self.view.center.x,self.view.center.y - 200);
+    btn2.center = CGPointMake(self.view.center.x,self.view.center.y - 150);
+    btn3.center = CGPointMake(self.view.center.x,self.view.center.y - 100);
+    btn4.center = CGPointMake(self.view.center.x,self.view.center.y - 50);
+    btn5.center = CGPointMake(self.view.center.x,self.view.center.y);
+    btn6.center = CGPointMake(self.view.center.x,self.view.center.y + 50);
     
     UILabel *label = [[UILabel alloc] init];
     label.numberOfLines = 0;
     label.textColor = [UIColor blackColor];
-    label.text = @"⚠️⚠️⚠️使用本框架默认开启了本框架自定义的转圈，若不想用转圈来提示用户，则可以用进度条来提示用户。";
-    label.center = CGPointMake(self.view.center.x, self.view.center.y + 250);
+    label.font = [UIFont systemFontOfSize:14];
+    label.text = @"⚠️⚠️⚠️使用本框架默认开启了本框架自定义的转圈，若不想用转圈来提示用户，则可以用进度条来提示用户。\n更多功能请参照.h文件的注释";
+    [label sizeToFit];
+    label.frame = CGRectMake(20, self.view.center.y + 100, self.view.frame.size.width-40, 100);
+    [self.view addSubview:label];
 }
 
 - (void)btnPressed:(UIButton *)sender {
@@ -154,3 +157,4 @@
 }
 
 @end
+
