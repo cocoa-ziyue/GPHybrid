@@ -30,7 +30,8 @@ Hybrid框架主要以JS+Native两者相互调用为主，从开发层面实现�
 执行：pod install  
 commadn+R运行项目
 可以看到如下界面:  
-![截图](https://github.com/ziyue92/folder/raw/master/Simulator_Screen_01.png)  
+![截图](https://github.com/ziyue92/folder/raw/master/Simulator_Screen_01.png)  
+
 `success!`
 
 ### 常见功能详解
