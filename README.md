@@ -17,12 +17,21 @@ Hybrid框架主要以JS+Native两者相互调用为主，从开发层面实现�
 因此GPHybird实现了JS+Native无缝调用、常见网页处理功能、常见客户端处理功能。实现UIWebview和WKWebView根据操作系统自动适应。  
 在iOS8+的设备上,使用WKWebView并封装了常见的功能接口，使用起来简单稳定。
 ```
-
 ### 架构思维导图
 ![GPHybrid模块组成介绍](https://github.com/ziyue92/folder/raw/master/GPHybird模块介绍.png)
 
 ### 使用介绍思维导图
 ![GPHybrid使用介绍](https://github.com/ziyue92/folder/raw/master/GPHybrid使用指南.png)
+
+### 如何运行项目  
+下载源码，解压。  
+打开终端，cd到主目录下的Example。  
+例如：cd /Users/gangpengshu/Downloads/GPHybrid-master/Example  
+执行：pod install  
+commadn+R运行项目
+可以看到如下界面:  
+![截图](https://github.com/ziyue92/folder/raw/master/Simulator_Screen_01.png)  
+`success!`
 
 ### 常见功能详解
 #### 1.使用vc加载h5网页，只需继承GPWebViewController，调用如下方法，一句代码就完成了网页加载。
