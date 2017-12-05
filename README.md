@@ -32,7 +32,7 @@ Hybrid框架主要以JS+Native两者相互调用为主，从开发层面实现�
 //1.2 简单request(NSMutableURLRequest)
 NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
 [self loadWebViewWithUrlRequest:request];
-//1.3 简单request(NSMutableURLRequest带header，或body)
+//1.3 复杂request(NSMutableURLRequest带header，或body)
 NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
 [request addValue:@"en_us" forHTTPHeaderField:@"lang"];
 [self loadWebViewWithUrlRequest:request];
