@@ -106,8 +106,9 @@ self.isforceUseoldWebView = YES;
 ## Mark
 ```text
 iOS开发交流群：674228487  
-欢迎关注我的博客：[Coder大鹏](http://blog.csdn.net/u010670946) 
 ```
+欢迎关注我的博客：[Coder大鹏](http://blog.csdn.net/u010670946) 
+
 ## Requirements
 
 iOS7+
